@@ -1,0 +1,56 @@
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+.allju {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+}
+
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
+}
+
+#components-form-demo-normal-login .login-form-forgot {
+    float: right;
+}
+
+#components-form-demo-normal-login .login-form-button {
+    width: 100%;
+}
+
+.ant-form-item-control {
+    margin-left: 50px;
+}
+
+span.ant-input-affix-wrapper {
+    width: 350px;
+}
+
+.login-form {
+    width: 500px;
+    height: 375px;
+    position: relative;
+    top: 200px;
+    border-radius: 8px;
+    background: white;
+}
+
+form.ant-form.ant-form-horizontal.login-form {
+    margin: 0 auto;
+}
+
+.login-form-forgot {
+    margin-left: 30px;
+}
+
+.ant-checkbox-wrapper {
+    display: block;
+    margin-left: 30px;
+}
+
+.ant-row.ant-form-item.formitem {
+    padding-top: 30px;
+}
