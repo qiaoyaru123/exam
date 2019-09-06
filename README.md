@@ -1,15 +1,24 @@
-#考试管理后台
-###启动项目
-####初始化
-create-react-app.cm exam-cms --scripts-version=react-scripts-ts
-####启服务
-npm run start
-####环境搭建
-####引入装饰器
-npm install --save-dev @babel/plugin-proposal-decorators
-####引入路由
-npm install --save-dev react-router-dom @types/react-router-dom
-####引入mobx
-npm install --save-dev mobx mobx-react
-####引入antd
-npm install --save-dev antd
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2019-09-02 20:07:15
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2019-09-04 14:04:01
+ -->
+ ## 登陆 
+ 
+ ## mobx typescript
+
+ ## 需要用到的包
+     mobx mobx-react 
+
+ ## react 路由需要用到的包
+    react-router-dom @types/react-router-dom
+ 
+ ## 默认进入主页login
+    login页面
+    ![Image text](https://github.com/movebug/projectlogin/blob/dev/exam-cms/public/img/ONE%20PUNCH-MAN.jpg)
+    
+## 账号：chenmenjie
+## 密码：Chenmanjie123!
