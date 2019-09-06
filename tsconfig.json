@@ -19,14 +19,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": false,
     "emitDecoratorMetadata": true,
-<<<<<<< HEAD
-    "experimentalDecorators": true,
-    "typeRoots":[
-      "node_modules / @ types"
-   ]
-=======
     "experimentalDecorators": true
->>>>>>> fdb32477fc9d757b14a1c81d7f7bebe45508b683
   },
   "exclude": [
     "node_modules",

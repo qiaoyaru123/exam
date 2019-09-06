@@ -1,13 +1,12 @@
-import {observable, action} from 'mobx'
-import {getQuestion} from '../../api/question'
+import {observable, action} from 'mobx';
+import {question} from '../../service/index';
 
+// 引入mobx
 class Question{
 
-    // 按条件获取试题
-    @action async getCheckfile(): Promise<any>{
-        let result: any = await getQuestion();
-        console.log(result,"...............");
-        return result
+    @action async question(): Promise<any>{
+        const result: any = await question();
+        return result;
     }
 }
 
