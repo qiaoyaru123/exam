@@ -1,0 +1,58 @@
+import { Modal, Button } from 'antd';
+import * as React from 'react';
+
+class Confirm extends React.Component {
+  state = {
+    ModalText: '请输入类型名称',
+    visible: false,
+    confirmLoading: false,
+  };
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = () => {
+    this.setState({
+      ModalText: 'The modal will be closed after two seconds',
+      confirmLoading: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        visible: false,
+        confirmLoading: false,
+      });
+    }, 2000);
+  };
+
+  handleCancel = () => {
+    console.log('Clicked cancel button');
+    this.setState({
+      visible: false,
+    });
+  };
+
+  render() {
+    const { visible, confirmLoading, ModalText } = this.state;
+    return (
+      <div>
+        <Button type="primary" onClick={this.showModal}>
+          添加类型
+        </Button>
+        <Modal
+          title="创建新类型"
+          visible={visible}
+          onOk={this.handleOk}
+          confirmLoading={confirmLoading}
+          onCancel={this.handleCancel}
+        >
+          <p>{ModalText}</p>
+        </Modal>
+      </div>
+    );
+  }
+}
+
+export default Confirm;
