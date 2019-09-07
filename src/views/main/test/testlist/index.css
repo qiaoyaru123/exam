@@ -17,7 +17,25 @@ h3{
 }
 .dom{
     width: 100%;
-    height: 100px;
+    height: 100px !important;
     background: #fff;
     align-items: center;
+}
+.dom div{
+    width: 100%;
+    height: 100% !important;
+}
+.tab{
+    width: 80% !important;
+    height: 500px !important;
+    display: flex;
+    flex-direction: column;
+}
+.tab div{
+    width: 100% !important;
+    height: 100% !important;
+}
+.ant-table-thead{
+    width: 100%;
+    height: 50px !important;
 }

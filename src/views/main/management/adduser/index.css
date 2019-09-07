@@ -1,0 +1,80 @@
+.wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+h3{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+.nav{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 3;
+}
+.nav .box{
+    width: 400px;
+    height: 300px;
+    border: 1px solid #000;
+    
+}
+.tou{
+    width: 100%;
+    height: 70px !important;
+    display: flex;
+}
+.tou span:nth-child(1){
+    margin-left: 20px;
+    border: 1px solid blue;
+    color: blue;
+    
+}
+.tou span{
+    
+    height: 50px;
+    border: 1px solid #ccc;
+    background: #fff;
+    line-height: 50px;
+    text-align: center;
+    margin-top: 20px;
+}
+.con{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.con input{
+    width: 80%;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 15px;
+
+}
+ #sel{
+    margin-top: 10px ;
+    width: 50% ;
+    margin-left: 20px;
+
+}
+ .btn{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    margin-top: 10px;
+}
+.btn button{
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    align-items: center;
+}
+.btn button:nth-child(1){
+    margin-left: 20px;
+    background: blue;
+    color: #fff;
+}

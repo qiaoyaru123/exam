@@ -85,7 +85,7 @@ export const sliderBar = [{
         {
             id: "Marking",
             name: "待批班级",
-            path: "/main/classManagement/Marking"
+            path: "/main/Marking/piclass"
         }
     ]
 }]

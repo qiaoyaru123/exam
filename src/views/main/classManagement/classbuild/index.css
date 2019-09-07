@@ -1,0 +1,61 @@
+.wrap{
+    width: 100%;
+    height: 100%;
+}
+h1{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+}
+.nav{
+    width: 100%;
+    height: 100%;
+}
+.nav .dex{
+    width: 95%;
+    height: 100%;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+}
+ .handletou{
+    width: 80% !important;
+    height: 50px !important;
+}
+.handletab{
+    width: 100%;
+    height: 500px !important;
+    display: flex;
+    flex-direction: column;
+    
+}
+.ant-table-wrapper{
+    width: 800px !important;
+    height: 400px !important;
+}
+.ant-spin-nested-loading{
+    width: 800px !important;
+    height: 400px !important;
+}
+.ant-spin-container{
+    width: 800px !important;
+    height: 400px !important;
+}
+.ant-table-body{
+    width: 800px !important;
+    height: 400px !important;
+    display: flex;
+    flex-direction: column;
+}
+.ant-table ant-table-middle ant-table-scroll-position-left{
+    width: 800px;
+    height: 400px !important;
+}
+.ant-table-content{
+    width: 800px;
+    height: 400px;
+}
+.ant-table-thead{
+    width: 80%;
+    height: 50px !important;
+}

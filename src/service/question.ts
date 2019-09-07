@@ -4,3 +4,5 @@ import request from '../utils/request';
 export let question = ()=>{
     return request.get('/exam/questions/condition');
 }
+
+
