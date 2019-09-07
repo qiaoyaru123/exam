@@ -20,6 +20,7 @@
     "noUnusedLocals": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
+    
   },
   "exclude": [
     "node_modules",

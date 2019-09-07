@@ -2,6 +2,7 @@ import { Button, Form, Icon, Input, Layout, Select, List, Avatar, Breadcrumb } f
 import { FormComponentProps } from 'antd/lib/form';
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
+import "./index.css"
 const { Option } = Select;
 const { Content } = Layout;
 interface UserFormProps extends FormComponentProps {
@@ -14,22 +15,22 @@ function handleChange(value: any) {
   console.log(`selected ${value}`);
 }
 
+
 @inject('question')
 @observer
 class Checkfile extends React.Component<UserFormProps, any> {
-
-  constructor(props: any) {
-    super(props);
-  }
   state = {
     data: []
   }
   public async componentDidMount() {
     const result = await this.props.question.question();
+
     this.setState({ data: result.data })
   }
+ 
   public render() {
     let { data } = this.state;
+    // const {getFieldProps} = this.props.form
     return (
       <Content style={{ margin: '0 16px' }}>
         <Breadcrumb style={{ margin: '16px 0', fontSize: 20 }}>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Table } from 'antd';
-// import "./index.css";
+
 
 import { inject, observer } from 'mobx-react';
 const columns = [
@@ -57,4 +57,4 @@ class Rank extends React.Component<Props> {
     }
 }
 
-export default Rank;
+export default  Rank;

@@ -1,10 +1,10 @@
 import * as React from 'react';
-
+import RouterView from "../../../router/RouterView"
 class Examinations extends React.Component {
     public render() {
         return (
             <div>
-                this is Examinations
+                 <RouterView routes={this.props.children}/>
             </div>
         )
     }
