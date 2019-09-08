@@ -9,11 +9,9 @@ class RouterView extends React.Component<PropsInfo> {
    public render() {
         let {routes} = this.props;
         const RedirectArr = routes.filter((item:any)=>item.redirect);
-
         const redirectArr = RedirectArr.map((item:any,index:number)=>{
             return <Redirect key={index} from={item.path} to={item.redirect}/>
         })
-
         routes = routes.filter((item:any)=>!item.redirect)
 
         return (

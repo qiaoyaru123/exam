@@ -43,3 +43,7 @@
 .ant-menu-submenu-active a {
     color: #fff;
 }
+
+.ant-spin-nested-loading{
+    min-Height: 400px;
+}

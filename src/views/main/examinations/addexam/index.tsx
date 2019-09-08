@@ -1,52 +1,101 @@
 import * as React from 'react';
-import { Button, Form, Icon, Input, Layout, Select, Tag, Avatar, Breadcrumb  } from 'antd'
-import { FormComponentProps } from 'antd/lib/form';
-import { inject, observer } from 'mobx-react';
+import './index.css';
+import { DatePicker } from 'antd';
+import { any } from 'prop-types';
 
-import "./index.css"
 
-const { Content } = Layout;
 
-interface UserFormProps extends FormComponentProps {
-    question: any,
-    age: number;
-    history: any,
-    name: string;
+const { RangePicker } = DatePicker;
+
+interface Props {
+    startValue: any,
+    value: any,
+    state: any,
+   
 }
-function handleChange(value: any) {
-    console.log(`selected ${value}`);
-}
-// @inject('question')
-// @observer
-class Addexam extends React.Component<UserFormProps, any> {
+
+export default class Addexam extends React.Component<Props> {
+
     state = {
-        data: [],
-        value: '',
-    }
-    handleChanges(value: any) {
-        this.setState({
-            value
-        })
-    }
-    public async componentDidMount() {
-        // const result = await this.props.question.getCheckfile();
-        // this.setState({ data: result.data })
-    }
-    public render() {
-        let { data, value } = this.state;
-        return (
-            <Content style={{ margin: '0 16px' }}>
-                <Breadcrumb style={{ margin: '16px 0', fontSize: 20 }}>
-                    <Breadcrumb.Item>试卷列表</Breadcrumb.Item>
-                </Breadcrumb>
-                <div style={{ padding: 24, minHeight: 530 }}>
-                  Addexam
-                </div>
+        startValue: null,
+        endValue: null,
+        endOpen: false,
 
-            </Content>
+    };
+
+
+    public render() {
+        const { startValue, endValue, endOpen } = this.state;
+        return (
+            <div className="wrap">
+                <h3>添加考试</h3>
+                <div className="nav">
+                    <div className="dem">
+                        <div>
+                            <h4>*试卷名称：</h4>
+                            <input />
+                        </div>
+                        <div>
+                            <h4>*选择考试类型：</h4>
+                            <select>
+                                <option value="">周考一</option>
+                                <option value="">周考二</option>
+                                <option value="">周考三</option>
+                                <option value="">月考</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h4>*选择课程：</h4>
+                            <select>
+                                <option value="">javaScript上</option>
+                                <option value="">javaScript上</option>
+                                <option value="">模块法开发</option>
+                                <option value="">移动端开发</option>
+                            </select>
+                        </div>
+                        <div>
+                            <h4>设置题量：</h4>
+                            <input />
+                        </div>
+                        <div className="time">
+                            <h4>考试时间：</h4>
+                            <div>
+                                {/* <DatePicker
+                                    dateRender={current => {
+                                        const style = {};
+                                        if (current.date() === 1) {
+                                            // style.border = '1px solid #1890ff';
+                                            // style.borderRadius = '50%';
+                                        }
+                                        return (
+                                            <div className="ant-calendar-date" style={style}>
+                                                {current.date()}
+                                            </div>
+                                        );
+                                    }}
+                                /> */}
+                                <RangePicker
+                                    dateRender={current => {
+                                        const style = {};
+                                        if (current.date() === 1) {
+                                            // style.border = '1px solid #1890ff';
+                                            // style.borderRadius = '50%';
+                                        }
+                                        return (
+                                            <div className="ant-calendar-date" style={style}>
+                                                {current.date()}
+                                            </div>
+                                        );
+                                    }}
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <button>创建试卷</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
-
-
-export default Form.create()(Addexam);
