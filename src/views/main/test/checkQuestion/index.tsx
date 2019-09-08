@@ -3,41 +3,40 @@ import { FormComponentProps } from 'antd/lib/form';
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 import "./index.css"
-const { Option } = Select;
-const { Content } = Layout;
 interface UserFormProps extends FormComponentProps {
   question: any,
   age: number;
   history: any,
-  name: string;
+  name: string,
+  state:any
 }
+
+const { Option } = Select;
+const { Content } = Layout;
+
 function handleChange(value: any) {
   console.log(`selected ${value}`);
 }
 
-
 @inject('question')
 @observer
 class Checkfile extends React.Component<UserFormProps, any> {
-  state = {
-    data: []
+
+public state = {
+    datas: []
   }
   public async componentDidMount() {
     const result = await this.props.question.question();
-
-    this.setState({ data: result.data })
+    this.setState({ datas: result.data })
   }
- 
   public render() {
-    let { data } = this.state;
-    // const {getFieldProps} = this.props.form
+    let { datas } = this.state;
     return (
-      <Content style={{ margin: '0 16px' }}>
+      <Content style={{ margin: '0 16px'}}>
         <Breadcrumb style={{ margin: '16px 0', fontSize: 20 }}>
           <Breadcrumb.Item>查看试题</Breadcrumb.Item>
         </Breadcrumb>
-        <div style={{ padding: 24, background: '#fff', minHeight: 530 }}>
-          <div className="check">
+        <div style={{ padding: 24, background: '#fff', minHeight: 530 ,height:"auto"}} className="m-max">
             <div className="header">
               <div className="m-title">
                 课程类型:<span>All</span><span>javaScript下</span><span>模块化开发</span><span>移动端开发</span><span>node基础</span>
@@ -68,11 +67,9 @@ class Checkfile extends React.Component<UserFormProps, any> {
                 </span>
                 <span><Button>查询</Button></span>
               </div>
-            </div>
-            <div className="m-content-box">
               <List
                 itemLayout="horizontal"
-                dataSource={data}
+                dataSource={datas}
                 renderItem={(item: any) => (
                   <List.Item>
                     <div className="m-item">
@@ -84,10 +81,11 @@ class Checkfile extends React.Component<UserFormProps, any> {
                   </List.Item>
                 )}
               />
-            </div>
           </div>
+         </div>
+          
+              
 
-        </div>
       </Content>
     )
   }
@@ -95,3 +93,5 @@ class Checkfile extends React.Component<UserFormProps, any> {
 
 
 export default Form.create()(Checkfile);
+
+

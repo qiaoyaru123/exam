@@ -12,6 +12,14 @@ import Showuser from "src/views/main/management/showuser"
 import Adduser from "src/views/main/management/adduser";
 import Examlist from "src/views/main/examinations/examlist";
 import Student from "src/views/main/classManagement/student"
+import Addexam from 'src/views/main/examinations/addexam/index';
+import Classbuild from 'src/views/main/classManagement/classbuild/index';
+import Roombuild from 'src/views/main/classManagement/roombuild/index';
+import Piclass from 'src/views/main/Marking/piclass/index';
+
+
+
+
 export default [{
         component: Login,
         path: '/login'
@@ -58,11 +66,14 @@ export default [{
                 component: Examinations,
                 path: '/main/examinations',
                 children:[{
-                    component:Examlist,
-                    path:"/main/examinations/examlist"
+                    path:'/main/examinations/addExaminations',
+                    component:Addexam
                 },{
-                    path:"/main/examinations",
-                    redirect:"/main/examinations/examlist"
+                    path:'/main/examinations/listExaminations',
+                    component:Examlist
+                },{
+                    path: '/main/examinations',
+                    redirect: '/main/examinations/addExaminations'
                 }]
             },
             {
@@ -72,13 +83,26 @@ export default [{
                     path:"/main/classManagement/student",
                     component:Student
                 },{
-                   path:"/main/classManagement",
-                   redirect:"/main/classManagement/student"
+                    path:'/main/classManagement/classRoom',
+                    component:Classbuild
+                },{
+                    path:'/main/classManagement/classment',
+                    component:Roombuild
+                },{
+                    path: '/main/classManagement',
+                    redirect: '/main/classManagement/classRoom'
                 }]
             },
             {
                 component: Marking,
-                path: '/main/Marking'
+                path: '/main/Marking',
+                children:[{
+                    path:'/main/Marking/piclass',
+                    component:Piclass
+                },{
+                    path: '/main/Marking',
+                    redirect: '/main/Marking/piclass'
+                }]
             },
             {
                 path: '/main',

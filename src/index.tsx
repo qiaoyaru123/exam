@@ -8,7 +8,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 // 引入mobx
 import { Provider } from 'mobx-react';
-import store from "./store/login"
+import store from "./store"
 
 // 引入全局样式
 import './index.css';

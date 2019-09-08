@@ -32,7 +32,7 @@ class Main extends React.Component<BooleanInfo> {
                 <Header className="title">
                     北京八维研修学院
                 </Header>
-                <Layout style={{ minHeight: '90vh' }}>
+                <Layout style={{ minHeight: '90vh'}}>
                     <Sider className="slider" trigger={null} collapsed={this.state.collapsed}>
                         <Menu
                             theme="dark"

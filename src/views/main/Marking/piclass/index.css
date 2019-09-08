@@ -1,21 +1,23 @@
- .m-title-silt .ant-tag{
-    margin:0;
-    padding:0;
-    padding:5px 15px;
-
-}
-/*.nav{
+.wrap{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-} 
+}
 h1{
     width: 100%;
     height: 50px;
 }
-.m-tab{
+.qwe{
     width: 100%;
     height: 100%;
-    margin-top: 10px;
-} */
+    margin-top: 20px;
+}
+.nav div{
+    width: 80%;
+    height: 100%;
+}
+.ant-table-wrapper{
+    width: 100%;
+    height: 100%;
+}
