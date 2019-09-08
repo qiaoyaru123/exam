@@ -2,12 +2,12 @@
     "name": "exam-cms",
     "version": "0.1.0",
     "private": true,
-    "proxy": "http://127.0.0.1:7001",
     "dependencies": {
         "@types/js-cookie": "^2.2.2",
         "@types/react-router-dom": "^4.3.5",
         "antd": "^3.23.1",
         "axios": "^0.19.0",
+        "for-editor": "^0.3.4",
         "install": "^0.13.0",
         "js-cookie": "^2.2.1",
         "mobx": "^5.13.0",

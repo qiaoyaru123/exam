@@ -59,3 +59,10 @@ h1{
     width: 80%;
     height: 50px !important;
 }
+.ant-pagination ant-table-pagination mini{
+    float: right;
+    position: fixed !important;
+    margin: 16px 0;
+    bottom: 5px !important;
+    right: 100px !important;
+}

@@ -1,0 +1,27 @@
+.m-header-list {
+  background: rgb(255, 255, 255);
+  padding: 24px;
+  margin: 0px 0px 20px;
+  border-radius: 10px;
+}
+.m-header-list .ant-select{
+   margin-right:30px;
+   margin-left:10px;
+}
+
+.Tag{
+  display: flex;
+  line-height: 50px;
+}
+.m-tag-title{
+  flex: 8
+  
+  }
+ .m-tag-item{
+  flex: 2;
+  
+}
+.m-tag-item .ant-tag{
+  margin:0;
+  padding:5px 10px;
+}

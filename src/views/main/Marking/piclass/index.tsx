@@ -4,22 +4,30 @@ import { Table } from 'antd';
 
 import {inject,observer} from 'mobx-react';
 
-
-
-
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
+        title: '班级名',
+        dataIndex: 'roomname',
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
+        title: '课程名称',
+        dataIndex: 'classname',
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
+        title: '阅卷状态',
+        dataIndex: 'ruestatus',
     },
+    {
+        title: '课程名称',
+        uni: 'classname',
+    },
+    {
+        title: '成材率',
+        dataIndex: 'live',
+    },{
+        title: '操作',
+        dataIndex: 'done',
+    }
 ];
 const data = [
     {
@@ -42,18 +50,34 @@ const data = [
     },
 ];
 
+const arr=[];
+
+
 interface Props{
-    examlist:any
+    examlist:any,
+    allstu:any
 }
 
-// @inject('examlist')
-// @observer
+@inject('allstu')
+@observer
 
 
 
 
 export default class Piclass extends React.Component <Props>{
+    state={
+        list:[]
+    }
+   
     render() {
+        let {list} = this.state;
+        {
+            list.map((item:any,index:number)=>{
+                return arr.push({
+                   
+                })
+            })
+        }
         return (
             <div className="wrap">
                 <h1>待批班级</h1>
@@ -68,32 +92,19 @@ export default class Piclass extends React.Component <Props>{
         )
     }
 
-    // componentDidMount(){
-    //     this.getData();
-    // }
+    componentDidMount(){
+        this.getData();
+    }
 
-    // getData=async ()=>{
-    //     const {examlist} = this.props.examlist;
-    //     const result = await examlist();
-    //     console.log(result)
-    //     this.setState({
-    //         list:result
-    //     })
-    // }
+    getData=async ()=>{
+        const {allstu} = this.props.allstu;
+        const result = await allstu();
+        console.log(result)
+        this.setState({
+            list:result
+        })
+    }
 }
 
-// import * as React from 'react';
 
-
-
-
-// export default class Index extends React.Component {
-//     render() {
-//         return (
-//             <div>
-//                 333
-//             </div>
-//         )
-//     }
-// }
 

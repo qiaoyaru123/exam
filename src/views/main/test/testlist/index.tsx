@@ -1,26 +1,14 @@
 import * as React from 'react';
 import Confirm from '../../../../component/confirm/comfirm';
 import './index.css';
-// import Tab from '../../../../component/table/table';
-
 import { Table } from 'antd';
-// import "./index.css";
 
 import { inject, observer } from 'mobx-react';
-
-
-
-
-
-
 
 interface PropsInfo {
     Tab: any,
     path: any
 }
-
-
-
 
 const columns = [
     {
@@ -82,11 +70,8 @@ class Testlist extends React.Component<PropsInfo> {
                         <Confirm />
                     </div>
                     <div className="tab">
-                        {/* <Tab/> */}
                        <div>
                             <Table columns={columns} dataSource={data} size="middle" />
-                            {/* <h4>Small size table</h4>
-                            <Table columns={columns} dataSource={data} size="small" /> */}
                         </div>
                     </div>
 
@@ -96,4 +81,4 @@ class Testlist extends React.Component<PropsInfo> {
     }
 }
 
-export default Testlist;
+export default Testlist

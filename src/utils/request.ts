@@ -1,11 +1,3 @@
-/*
- * @Descripttion: 
- * @version: 
- * @Author: sueRimn
- * @Date: 2019-09-03 20:29:10
- * @LastEditors: sueRimn
- * @LastEditTime: 2019-09-05 08:45:16
- */
 
 import axios from 'axios';
 import { AxiosResponse } from 'axios/index';

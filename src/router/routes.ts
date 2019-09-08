@@ -8,10 +8,11 @@ import Marking from 'src/views/main/Marking';
 import AddQuestion from 'src/views/main/test/addQuestion';
 import Testlist from 'src/views/main/test/testlist';
 import CheckQuestion from 'src/views/main/test/checkQuestion';
-import Adduser from 'src/views/main/management/adduser/index';
-import Showuser from 'src/views/main/management/showuser/showuser';
+import Showuser from "src/views/main/management/showuser"
+import Adduser from "src/views/main/management/adduser";
+import Examlist from "src/views/main/examinations/examlist";
+import Student from "src/views/main/classManagement/student/index"
 import Addexam from 'src/views/main/examinations/addexam/index';
-import Examlist from 'src/views/main/examinations/examlist/index';
 import Classbuild from 'src/views/main/classManagement/classbuild/index';
 import Roombuild from 'src/views/main/classManagement/roombuild/index';
 import Piclass from 'src/views/main/Marking/piclass/index';
@@ -50,15 +51,15 @@ export default [{
             {
                 component: Management,
                 path: '/main/management',
-                children:[{
-                    path:'/main/management/adduser',
-                    component:Adduser
+                children:[,{
+                    path:"/main/management",
+                    redirect:"/main/management/adduser"
                 },{
-                    path:'/main/management/showuser',
-                    component:Showuser
+                    component: Showuser,
+                    path:"/main/management/showuser",
                 },{
-                    path: '/main/management',
-                    redirect: '/main/management/adduser'
+                    component:Adduser,
+                    path:"/main/management/adduser"
                 }]
             },
             {
@@ -79,6 +80,9 @@ export default [{
                 component: ClassManagement,
                 path: '/main/classManagement',
                 children:[{
+                    path:"/main/classManagement/studentManagement",
+                    component:Student
+                },{
                     path:'/main/classManagement/classRoom',
                     component:Classbuild
                 },{
