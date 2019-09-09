@@ -3,7 +3,6 @@ import { Modal, Button } from 'antd';
 import './index.css';
 import { Table } from 'antd';
 
-
 const columns = [
     {
         title: 'Name',
@@ -110,13 +109,8 @@ export default class Classbuild extends React.Component {
                             </Modal>
                         </div>
                         <div className="handletab">
-                                
-
-                                
-                                <h4>Middle size table</h4>
-                                <Table columns={columns} dataSource={data} size="middle" />
-                                
-                            
+                            <h4>Middle size table</h4>
+                            <Table columns={columns} dataSource={data} size="middle" />
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,10 @@ import "./index.css"
 const { Option } = Select;
 const { Content } = Layout;
 
+//引入组件
+import Week from "../../../../component/week"
+import Subjects from "../../../../component/subjects"
+import GetType from "../../../../component/getQuestionsType"
 interface UserFormProps extends FormComponentProps {
     question: any,
     age: number;
@@ -23,7 +27,7 @@ class AddQuestions extends React.Component<UserFormProps, any> {
         data: [],
         value: '',
     }
-   handleChanges(value:any,$hint) {
+   handleChanges(value:any,$hint:any) {
        console.log($hint)
         this.setState({
           value
@@ -59,14 +63,10 @@ class AddQuestions extends React.Component<UserFormProps, any> {
                     </div>
 
                     <div className="m-item-ip">
-                        请选择考试类型:
-                        <Select defaultValue="" style={{ width: 200,display:"block" }} onChange={()=>{this.handleChanges(value,"week")}}>
-                            <Option value="周考一">周考一</Option>
-                            <Option value="周考二">周考二</Option>
-                            <Option value="周考三">周考三</Option>
-                            <Option value="月考">月考</Option>
-
-                        </Select>
+                        <div>
+                          请选择考试类型:
+                        </div>
+                        <Week/>
                     </div>
 
                     <div className="m-item-ip">
@@ -77,7 +77,7 @@ class AddQuestions extends React.Component<UserFormProps, any> {
                             <Option value="代码补全题">代码补全题</Option>
                             <Option value="修改bug">修改bug</Option>
                             <Option value="手写代码">手写代码</Option>
-
+                             
                         </Select>
                     </div>
 
@@ -89,8 +89,10 @@ class AddQuestions extends React.Component<UserFormProps, any> {
                             <Option value="代码补全题">代码补全题</Option>
                             <Option value="修改bug">修改bug</Option>
                             <Option value="手写代码">手写代码</Option>
-
+                           
                         </Select>
+                        {/* <GetType/>
+                        <Subjects/> */}
                     </div>
                     <div className="m-con">
                          答案信息
