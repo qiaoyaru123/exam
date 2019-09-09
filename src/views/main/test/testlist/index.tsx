@@ -70,11 +70,8 @@ class Testlist extends React.Component<PropsInfo> {
                         <Confirm />
                     </div>
                     <div className="tab">
-                       <div>
-                            <Table columns={columns} dataSource={data} size="middle" />
-                        </div>
+                        <Table columns={columns} dataSource={data} size="middle" /> 
                     </div>
-
                 </div>
             </div>
         )

@@ -2,7 +2,7 @@ import {observable, action} from 'mobx';
 import {adduser} from '../../service/index';
 
 // 引入mobx
-class Question{
+class Adduser{
 
     @action async adduser(from:any): Promise<any>{
         console.log()
@@ -11,4 +11,4 @@ class Question{
     }
 }
 
-export default Question;
+export default Adduser;

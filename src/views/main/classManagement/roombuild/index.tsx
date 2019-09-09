@@ -5,6 +5,7 @@ import { Table } from 'antd';
 import {observer, inject} from 'mobx-react';
 
 
+
 const columns = [
     {
         title: '教室号',
@@ -27,18 +28,22 @@ interface Props{
     room:any,
     result:any,
     arr:any,
+    addroom:any
    
 }
 
 
-@inject('room')
+@inject('room','addroom')
 @observer
 
 export default class Classbuild extends React.Component<Props> {
     state = {
         loading: false,
         visible: false,
-        list:[]
+        list:[],
+        bname:'',
+        jiaoname:'',
+        iconname:''
     };
 
     showModal = () => {
@@ -59,7 +64,7 @@ export default class Classbuild extends React.Component<Props> {
     };
 
     render() {
-        const { visible, loading,list } = this.state;
+        const { visible, loading,list ,bname,jiaoname,iconname} = this.state;
 
 
         {
@@ -90,7 +95,7 @@ export default class Classbuild extends React.Component<Props> {
                                     <Button key="back" onClick={this.handleCancel}>
                                         取消
                                  </Button>,
-                                    <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
+                                    <Button key="submit" type="primary" loading={loading} onClick={this.handleok}>
                                         提交
                              </Button>,
                                 ]}
@@ -98,32 +103,26 @@ export default class Classbuild extends React.Component<Props> {
                                 <p>
                                     <div>*班级名</div>
                                     <div>
-                                        <input type="text" />
+                                        <input type="text" onChange={this.handlejia} name="bname" value={bname}/>
                                     </div>
                                 </p>
                                 <p>
                                     <div>*教室号</div>
                                     <div>
-                                        <input type="text" />
+                                        <input type="text" onChange={this.handlejia} name="jiaoname" value={jiaoname}/>
                                     </div>
                                 </p>
                                 <p>
                                     <div>*课程名</div>
                                     <div>
-                                        <input type="text" />
+                                        <input type="text" onChange={this.handlejia} name="iconname" value={iconname}/>
                                     </div>
                                 </p>
 
                             </Modal>
                         </div>
                         <div className="handletab">
-                                
-
-                                
-                               
-                                <Table columns={columns} dataSource={arr} size="middle" rowKey={(record:any)=>record.id}/>
-                                
-                            
+                            <Table columns={columns} dataSource={arr} size="middle" rowKey={(record:any)=>record.id}/>
                         </div>
                     </div>
                 </div>
@@ -137,6 +136,36 @@ export default class Classbuild extends React.Component<Props> {
         this.getData()
         
     }
+
+    handlejia=(e:any)=>{
+        console.log(e.target.value)
+        let name= e.target.name;
+        this.setState({
+            [name]:e.target.value
+        })
+        
+    }
+
+    handleok=()=>{
+        let {bname,jiaoname,iconname} = this.state;
+        console.log(bname,jiaoname,iconname);
+
+        let obj={
+            holl:jiaoname,
+            action:'删除'
+        }
+
+        arr.push(obj);
+
+        this.addroom(obj);
+    }
+
+    addroom= async(obj:any)=>{
+        const {addroom} = this.props.addroom;
+        const result = await addroom(obj);
+    }
+
+
     getData=async ()=>{
         const {room} = this.props.room;
         const result = await room();

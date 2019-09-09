@@ -30,11 +30,16 @@ interface Props{
     student:any,
     grade_name:any,
     arr:any,
-    banroom:any
+    banroom:any,
+    addclass:any,
+    clickRow:any,
+    num:any,
+    delclass:any,
+
     
 }
 
-@inject('student')
+@inject('student','addclass','delclass')
 @observer
 
 export default class Classbuild extends React.Component <Props>{
@@ -124,7 +129,8 @@ export default class Classbuild extends React.Component <Props>{
                             </Modal>
                         </div>
                         <div className="handletab">
-                                <Table columns={columns} dataSource={arr} size="middle"  rowKey={(record:any)=>record.id}/>
+                                <Table columns={columns} dataSource={arr} size="middle"  rowKey={(record:any)=>record.id} 
+                                onRow={this.onClickRow}/>
                         </div>
                     </div>
                 </div>
@@ -134,6 +140,21 @@ export default class Classbuild extends React.Component <Props>{
 
     componentDidMount(){
         this.getData();
+    }
+
+    onClickRow =(record:any)=>{
+        return {
+            onClick:()=>{
+                console.log( record.roomname)
+                let del = record.roomname
+                this.handledel('9njyyc-i39brm-z9k0pj-n0c83u')
+            }
+        }
+    }
+
+    handledel = async(del:any)=>{
+        const result = await this.props.delclass.delclass({grade_id:del});
+        console.log(result)
     }
 
     handleadd = async(e:any)=>{
@@ -160,8 +181,12 @@ export default class Classbuild extends React.Component <Props>{
         arr.push(obj);
         console.log(arr)
 
+        this.addclass(obj);
+    }
 
-
+    addclass=async(obj:any)=>{
+        const {addclass} = this.props.addclass;
+        const result = await addclass(obj);
     }
 
     getData=async()=>{
