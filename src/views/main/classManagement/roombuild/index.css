@@ -13,7 +13,7 @@ h1{
 }
 .nav .dam{
     width: 95%;
-    height: 100%;
+   height: 700px;
     margin: 0 auto;
     background: #fff;
     border-radius: 10px;
@@ -24,7 +24,10 @@ h1{
 }
 .handletab{
     width: 100%;
-    height: 500px;
+    height: 700px !important;
     display: flex;
     flex-direction: column;
+}
+.ant-table-wrapper{
+    height: 700px !important;
 }

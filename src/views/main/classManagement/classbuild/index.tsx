@@ -2,46 +2,49 @@ import * as React from 'react';
 import { Modal, Button } from 'antd';
 import './index.css';
 import { Table } from 'antd';
+import {observer,inject} from 'mobx-react';
 
 const columns = [
     {
-        title: 'Name',
+        title: '班级名',
         dataIndex: 'name',
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
+        title: '课程名',
+        dataIndex: 'classroom',
     },
     {
-        title: 'Address',
-        dataIndex: 'address',
-    },
-];
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-    },
+        title: '教室号',
+        dataIndex: 'roomname',
+    },{
+        title:'操作',
+        dataIndex:'done'
+    }
 ];
 
-export default class Classbuild extends React.Component {
+
+
+let arr:any=[];
+
+interface Props{
+    student:any,
+    grade_name:any,
+    arr:any,
+    banroom:any
+    
+}
+
+@inject('student')
+@observer
+
+export default class Classbuild extends React.Component <Props>{
     state = {
         loading: false,
         visible: false,
+        list:[],
+        banroom:'',
+        jiaoroom:'',
+        classicon:''
     };
 
     showModal = () => {
@@ -62,7 +65,19 @@ export default class Classbuild extends React.Component {
     };
 
     render() {
-        const { visible, loading } = this.state;
+        const { visible, loading,list,banroom,jiaoroom,classicon} = this.state;
+        {
+            list.map((item:any,index:number)=>{
+                return arr.push({
+                    name:item.grade_name,
+                    classroom:item.subject_text,
+                    roomname:item.room_text,
+                    done:'修改|删除',
+                    id:index+''
+                        
+                })
+            })
+        }
 
         return (
             <div className="wrap">
@@ -82,7 +97,7 @@ export default class Classbuild extends React.Component {
                                     <Button key="back" onClick={this.handleCancel}>
                                         取消
                                  </Button>,
-                                    <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
+                                    <Button key="submit" type="primary" loading={loading} onClick={this.handleok}>
                                         提交
                              </Button>,
                                 ]}
@@ -90,31 +105,80 @@ export default class Classbuild extends React.Component {
                                 <p>
                                     <div>*班级名</div>
                                     <div>
-                                        <input type="text" />
+                                        <input type="text" onChange={this.handleadd} value={banroom} name="banroom"/>
                                     </div>
                                 </p>
                                 <p>
                                     <div>*教室号</div>
                                     <div>
-                                        <input type="text" />
+                                        <input type="text" onChange={this.handleadd} value={jiaoroom} name="jiaoroom"/>
                                     </div>
                                 </p>
                                 <p>
                                     <div>*课程名</div>
                                     <div>
-                                        <input type="text" />
+                                        <input type="text" onChange={this.handleadd} value={classicon} name="classicon"/>
                                     </div>
                                 </p>
 
                             </Modal>
                         </div>
                         <div className="handletab">
-                            <h4>Middle size table</h4>
-                            <Table columns={columns} dataSource={data} size="middle" />
+                                <Table columns={columns} dataSource={arr} size="middle"  rowKey={(record:any)=>record.id}/>
                         </div>
                     </div>
                 </div>
             </div>
         )
+    }
+
+    componentDidMount(){
+        this.getData();
+    }
+
+    handleadd = async(e:any)=>{
+        console.log(11111111111)
+        let name= e.target.name;
+        console.log(name);
+        this.setState({
+            [name]:e.target.value
+        },()=>{
+            console.log(name)
+        })
+    }
+
+    handleok = async() =>{
+        let {banroom,jiaoroom,classicon} = this.state;
+        console.log(banroom,jiaoroom,classicon);
+        let obj={
+            name:banroom,
+            classroom:jiaoroom,
+            roomname:classicon,
+            done:'修改|删除'
+
+        };
+        arr.push(obj);
+        console.log(arr)
+
+
+
+    }
+
+    getData=async()=>{
+        const {student} = this.props.student;
+        const result = await student();
+        console.log(result);
+        result.data.map((item:any,index:any)=>{
+            item.id=index
+        })
+        let datas
+        if(result.code === 1){
+             datas=result.data.splice(1,8);
+            console.log(datas)
+
+        }
+        this.setState({
+            list:datas
+        })
     }
 }

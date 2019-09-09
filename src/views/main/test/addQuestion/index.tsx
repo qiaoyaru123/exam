@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Form, Input, Layout, Select, Breadcrumb } from 'antd'
+import { Button, Form, Icon, Input, Layout, Select, List, Avatar, Breadcrumb } from 'antd'
 import { FormComponentProps } from 'antd/lib/form';
 import { inject, observer } from 'mobx-react';
 import Editor from 'for-editor';

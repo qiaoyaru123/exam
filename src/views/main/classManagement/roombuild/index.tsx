@@ -2,44 +2,43 @@ import * as React from 'react';
 import { Modal, Button } from 'antd';
 import './index.css';
 import { Table } from 'antd';
+import {observer, inject} from 'mobx-react';
 
 
 const columns = [
     {
-        title: 'Name',
-        dataIndex: 'name',
+        title: '教室号',
+        dataIndex: 'holl',
     },
     {
-        title: 'Age',
-        dataIndex: 'age',
+        title: '操作',
+        dataIndex: 'action',
     },
     
 ];
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        
-    },
-];
 
-export default class Classbuild extends React.Component {
+
+const arr:any=[];
+
+
+
+
+interface Props{
+    room:any,
+    result:any,
+    arr:any,
+   
+}
+
+
+@inject('room')
+@observer
+
+export default class Classbuild extends React.Component<Props> {
     state = {
         loading: false,
         visible: false,
+        list:[]
     };
 
     showModal = () => {
@@ -60,7 +59,18 @@ export default class Classbuild extends React.Component {
     };
 
     render() {
-        const { visible, loading } = this.state;
+        const { visible, loading,list } = this.state;
+
+
+        {
+            list.map((item:any,index:number)=>{
+                return arr.push({
+                    holl:item.room_text,
+                    action:'删除',
+                    id:index+''
+                })
+            })
+        }
 
         return (
             <div className="wrap">
@@ -111,7 +121,7 @@ export default class Classbuild extends React.Component {
 
                                 
                                
-                                <Table columns={columns} dataSource={data} size="middle" />
+                                <Table columns={columns} dataSource={arr} size="middle" rowKey={(record:any)=>record.id}/>
                                 
                             
                         </div>
@@ -120,4 +130,23 @@ export default class Classbuild extends React.Component {
             </div>
         )
     }
+
+
+
+    componentDidMount(){
+        this.getData()
+        
+    }
+    getData=async ()=>{
+        const {room} = this.props.room;
+        const result = await room();
+        console.log(result.data);
+        result.data.map((item:any,index:any)=>{
+            item.id=index
+        })
+        this.setState({
+            list:result.data
+        })
+    }
+
 }

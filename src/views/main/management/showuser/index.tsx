@@ -1,27 +1,12 @@
 
 import * as React from 'react';
-import { Form, Layout, Breadcrumb, List, Tag, Table } from 'antd'
+import { Form, Layout, Breadcrumb,  Tag, Table } from 'antd'
 import { FormComponentProps } from 'antd/lib/form';
 import { inject, observer } from 'mobx-react';
 import "./index.css"
 
 const { Content } = Layout;
 
-const dataSource = [
-    {
-        key: '1',
-        name: "",
-        age: 32,
-        address: '西湖区湖底公园1号',
-        childer: []
-    },
-    {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-    },
-];
 //头部数据
 const mycolumns = [
     [{

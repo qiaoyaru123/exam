@@ -11,7 +11,7 @@ import CheckQuestion from 'src/views/main/test/checkQuestion';
 import Showuser from "src/views/main/management/showuser"
 import Adduser from "src/views/main/management/adduser";
 import Examlist from "src/views/main/examinations/examlist";
-import Student from "src/views/main/classManagement/student"
+import Student from "src/views/main/classManagement/student/index"
 import Addexam from 'src/views/main/examinations/addexam/index';
 import Classbuild from 'src/views/main/classManagement/classbuild/index';
 import Roombuild from 'src/views/main/classManagement/roombuild/index';
@@ -80,7 +80,7 @@ export default [{
                 component: ClassManagement,
                 path: '/main/classManagement',
                 children:[{
-                    path:"/main/classManagement/student",
+                    path:"/main/classManagement/studentManagement",
                     component:Student
                 },{
                     path:'/main/classManagement/classRoom',
