@@ -159,9 +159,6 @@ export default class Classbuild extends React.Component <Props>{
         };
         arr.push(obj);
         console.log(arr)
-
-
-
     }
 
     getData=async()=>{

@@ -33,9 +33,13 @@
   display: flex;
   line-height: 30px;
 }
-.m-input span {
-  padding: 0 20px 0 0;
+ .m-input-search {
+  display: flex;
+} 
+.m-input-search span {
+  flex: 1
 }
+
 .m-item {
   flex: 9;
 }
@@ -65,4 +69,7 @@
 }
 .ant-list-item:hover{
   background:#e6f7ff
+}
+.m-max .ant-list{
+  margin-top:30px;
 }

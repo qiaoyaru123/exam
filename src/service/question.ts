@@ -6,3 +6,10 @@ export let question = ()=>{
 }
 
 
+//添加试题
+
+export function addquestion(params: object) {
+    return request.post('/exam/questions', params);
+}
+
+
