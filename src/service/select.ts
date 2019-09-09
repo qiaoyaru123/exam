@@ -4,7 +4,8 @@ import request from '../utils/request';
 export let week = ()=>{
     return request.get('/exam/examType');
 }
-export let subject=()=>{
+//导出所有试题类型
+export let subjects=()=>{
     return request.get('/exam/subject')
 }
 
