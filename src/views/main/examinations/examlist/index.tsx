@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Button, Form, Icon, Input, Layout, Select, Tag, Avatar, Breadcrumb, List, Typography } from 'antd'
 import { FormComponentProps } from 'antd/lib/form';
-import { inject, observer } from 'mobx-react';
+// import { inject, observer } from 'mobx-react';
 
 import "./index.css"
 const { Option } = Select;
@@ -14,11 +14,11 @@ interface UserFormProps extends FormComponentProps {
     history: any,
     name: string;
 }
+
 function handleChange(value: any) {
     console.log(`selected ${value}`);
 }
-// @inject('question')
-// @observer
+
 class Examlist extends React.Component<UserFormProps, any> {
     state = {
         data: [],

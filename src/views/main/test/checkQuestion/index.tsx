@@ -1,12 +1,12 @@
-import * as React from "react";
-import { Button, Form, Icon, Layout, Select, List, Breadcrumb } from "antd";
-import { FormComponentProps } from "antd/lib/form";
-import { inject, observer } from "mobx-react";
-import "./index.css";
+import { Button, Form, Icon, Input, Layout, Select, List, Avatar, Breadcrumb } from 'antd'
+import { FormComponentProps } from 'antd/lib/form';
+import * as React from 'react';
+import { inject, observer } from 'mobx-react';
+import "./index.css"
 
 //引入组件
-import Week from "../../../../component/week";
-import Type from "../../../../component/getQuestionsType";
+import Week from "../../../../component/week"
+import Type from "../../../../component/getQuestionsType"
 
 interface UserFormProps extends FormComponentProps {
   history: any;
@@ -18,6 +18,8 @@ interface UserFormProps extends FormComponentProps {
   state: any;
 }
 
+
+const { Option } = Select;
 const { Content } = Layout;
 
 @inject("question")

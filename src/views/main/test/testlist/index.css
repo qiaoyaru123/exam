@@ -1,40 +1,39 @@
-/* .test{
+.wrapper{
     width: 100%;
     height: 100%;
-} */
-h3{
+}
+h1{
     width: 100%;
     height: 50px;
     line-height: 50px;
 }
-.dem{
-    height: 500px;
-    background: #fff;
+.icon{
+    width: 100%;
+    height: 100%;
+}
+.icon .box{
+    width: 95%;
+    height: 100%;
     margin: 0 auto;
-    border-radius: 15px 15px 15px 15px;
-    
-}
-/* .dom{
-    width: 100%;
-    height: 100px !important;
     background: #fff;
-    align-items: center;
-} */
-/* .dom div{
-    width: 100%;
-    height: 100% !important;
+    border-radius: 10px;
 }
-.tab{
-    width: 80% !important;
-    height: 500px !important;
+ .handletian{
+    width: 100% ;
+    height: 50px;
+}
+.handletaber{
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    
 }
-.tab div{
-    width: 100% !important;
-    height: 100% !important;
-}
-.ant-table-thead{
+.handletaber .ant-table-wrapper{
     width: 100%;
-    height: 50px !important;
-} */
+    height: 100%;
+}
+.ant-table-body table{
+    width: 900px !important;
+    height: 100%;
+}

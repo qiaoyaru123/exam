@@ -146,62 +146,51 @@ interface UserFormProps extends FormComponentProps {
 @inject("usershow")
 @observer
 class Showuser extends React.Component<UserFormProps, any> {
-  state = {
-    data: [],
-    title: "",
-    columns: []
-  };
+    state = {
+        data: [],
+        title: "",
+        columns: []
+    }
 
-  public async userInfo($url: string, $tit: string, $index: number) {
-    const result = await this.props.usershow.userShow($url);
-    result.data.map((item: any, index: number) => {
-      item.id = index + "";
-    });
-    this.setState({
-      data: result.data,
-      title: $tit,
-      columns: mycolumns[$index]
-    });
-  }
+    public async userInfo($url: string, $tit: string, $index: number) {
 
-  public async componentDidMount() {
-    this.userInfo("/user/user", "用户数据", 0);
-  }
+        const result = await this.props.usershow.userShow($url);
+        result.data.map((item: any, index: number) => {
+            item.id = index
+        })
+        console.log(result.data)
+        this.setState({ data: result.data, title: $tit, columns: mycolumns[$index] })
 
-  public render() {
-    let { data, title, columns } = this.state;
-    return (
-      <Content style={{ margin: "0 16px" }}>
-        <Breadcrumb style={{ margin: "16px 0", fontSize: 20 }}>
-          <Breadcrumb.Item>用户展示</Breadcrumb.Item>
-        </Breadcrumb>
-        <div style={{ padding: 24, minHeight: 530 }}>
-          <div className="m-title-silt">
-            {datas.map((item, index) => {
-              return (
-                <Tag
-                  key={item.value}
-                  onClick={() => {
-                    this.userInfo(item.url, item.title, index);
-                  }}
-                >
-                  {item.title}
-                </Tag>
-              );
-            })}
-          </div>
-          <div className="m-tab">
-            <h2>{title}</h2>
-            <Table
-              dataSource={data}
-              columns={columns}
-              rowKey={(record: any) => record.id}
-            />
-          </div>
-        </div>
-      </Content>
-    );
-  }
+    }
+
+    public async componentDidMount() {
+        this.userInfo("/user/user", "用户数据", 0)
+    }
+    public render() {
+        let { data, title, columns } = this.state;
+        return (
+            <Content style={{ margin: '0 16px' }}>
+                <Breadcrumb style={{ margin: '16px 0', fontSize: 20 }}>
+                    <Breadcrumb.Item>用户展示</Breadcrumb.Item>
+                </Breadcrumb>
+                <div style={{ padding: 24, minHeight: 530 }}>
+                    <div className="m-title-silt">
+                        {datas.map((item, index) => {
+                            return <Tag key={item.value} onClick={() => { this.userInfo(item.url, item.title, index) }}>{item.title}</Tag>
+                        })}
+
+                    </div>
+                    <div className="m-tab">
+                        <h2>{title}</h2>
+                        <Table dataSource={data} columns={columns} 
+                        rowKey={(record:any)=>{
+                            return  record.id
+                        }}  />;
+                    </div>
+                </div>
+            </Content>
+        )
+    }
 }
 
 export default Form.create()(Showuser);

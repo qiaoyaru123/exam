@@ -1,8 +1,8 @@
 import {observable, action} from 'mobx';
-import {addclass} from '../../service/index';
+import {addclass} from '../../../../service/index';
 
 // 引入mobx
-class Question{
+class Addclass{
 
     @action async addclass(from:any): Promise<any>{
         console.log()
@@ -11,4 +11,4 @@ class Question{
     }
 }
 
-export default Question;
+export default Addclass;

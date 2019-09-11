@@ -20,7 +20,6 @@ class Question{
         const result: any = await examsubject();
         return result;
     }
-
 }
 
 export default Question;

@@ -47,6 +47,7 @@ class Login extends React.Component<Propsinfo> {
           autologin: values.autologin
         };
         const result = await this.props.user.login(params);
+        console.log(result)
         if (result.code === 1) {
           success();
           this.props.history.push("/main");

@@ -13,21 +13,18 @@ h1{
 }
 .nav .dam{
     width: 95%;
-   height: 700px;
+    height: 100%;
     margin: 0 auto;
     background: #fff;
     border-radius: 10px;
 }
-.dem .handletou{
+.dam .handletou{
     width: 100%;
     height: 50px !important;
 }
 .handletab{
     width: 100%;
-    height: 700px !important;
+    height: 100%;
     display: flex;
     flex-direction: column;
-}
-.ant-table-wrapper{
-    height: 700px !important;
 }

@@ -7,22 +7,20 @@ import {observer,inject} from 'mobx-react';
 const columns = [
     {
         title: '班级名',
-        dataIndex: 'name',
+        dataIndex: 'grade_name',
     },
     {
         title: '课程名',
-        dataIndex: 'classroom',
+        dataIndex: 'subject_text',
     },
     {
         title: '教室号',
-        dataIndex: 'roomname',
+        dataIndex: 'room_text',
     },{
         title:'操作',
-        dataIndex:'done'
+        dataIndex:'btn',
     }
 ];
-
-
 
 let arr:any=[];
 
@@ -30,21 +28,28 @@ interface Props{
     student:any,
     grade_name:any,
     arr:any,
-    banroom:any
-    
+    banroom:any,
+    addclass:any,
+    clickRow:any,
+    num:any,
+    delclass:any,
+    roomall:any,
+    map:any,
+    xueall:any
 }
 
-@inject('student')
+@inject('student','addclass','delclass','roomall','xueall')
 @observer
 
 export default class Classbuild extends React.Component <Props>{
     state = {
-        loading: false,
         visible: false,
         list:[],
         banroom:'',
         jiaoroom:'',
-        classicon:''
+        classicon:'',
+        roomall:[],
+        xueall:[]
     };
 
     showModal = () => {
@@ -65,20 +70,8 @@ export default class Classbuild extends React.Component <Props>{
     };
 
     render() {
-        const { visible, loading,list,banroom,jiaoroom,classicon} = this.state;
-        {
-            list.map((item:any,index:number)=>{
-                return arr.push({
-                    name:item.grade_name,
-                    classroom:item.subject_text,
-                    roomname:item.room_text,
-                    done:'修改|删除',
-                    id:index+''
-                        
-                })
-            })
-        }
-
+        const { visible,list,banroom,jiaoroom,classicon,roomall,xueall} = this.state;
+       
         return (
             <div className="wrap">
                 <h1>班级管理</h1>
@@ -91,40 +84,54 @@ export default class Classbuild extends React.Component <Props>{
                             <Modal
                                 visible={visible}
                                 title="添加班级名"
-                                onOk={this.handleOk}
                                 onCancel={this.handleCancel}
                                 footer={[
-                                    <Button key="back" onClick={this.handleCancel}>
+                                    <Button   key="back" onClick={this.handleCancel}>
                                         取消
                                  </Button>,
-                                    <Button key="submit" type="primary" loading={loading} onClick={this.handleok}>
+                                    <Button  key="bac" onClick={this.handleok}>
                                         提交
-                             </Button>,
+                                </Button>,
                                 ]}
                             >
                                 <p>
                                     <div>*班级名</div>
                                     <div>
-                                        <input type="text" onChange={this.handleadd} value={banroom} name="banroom"/>
+                                        <input type="text" onChange={this.handleadd} value={banroom} name="banroom" className='ipt'/>
                                     </div>
                                 </p>
                                 <p>
                                     <div>*教室号</div>
                                     <div>
-                                        <input type="text" onChange={this.handleadd} value={jiaoroom} name="jiaoroom"/>
+                                        <select name="jiaoroom" id="" onChange={this.handleadd}>
+                                            {
+                                                roomall.map((item:any,index:any)=>{
+                                                   return <option value={item.room_id}  key={index} >{item.room_text}</option>
+                                                })
+                                            }
+                                        </select>
                                     </div>
                                 </p>
                                 <p>
                                     <div>*课程名</div>
                                     <div>
-                                        <input type="text" onChange={this.handleadd} value={classicon} name="classicon"/>
+                                    <select name="classicon" id="" onChange={this.handleadd}>
+                                            {
+                                                xueall.map((item:any,index:any)=>{
+                                                   return <option value={item.subject_id}  key={index}>{item.subject_text}</option>
+                                                })
+                                            }
+                                        </select>
                                     </div>
                                 </p>
 
                             </Modal>
                         </div>
                         <div className="handletab">
-                                <Table columns={columns} dataSource={arr} size="middle"  rowKey={(record:any)=>record.id}/>
+                                <Table columns={columns} dataSource={list} size="middle"  rowKey={(record:any)=>{
+                                    return  record.id
+                                }} onRow={this.onClickRow} 
+                               />
                         </div>
                     </div>
                 </div>
@@ -134,48 +141,80 @@ export default class Classbuild extends React.Component <Props>{
 
     componentDidMount(){
         this.getData();
+        this.getroomall();
+        this.getxueall();
+    }
+
+    onClickRow =(record:any)=>{
+        return {
+            onClick:()=>{
+                let del = record.grade_id;
+                console.log(del)
+                this.handledel(del)
+            }
+        }
+    }
+
+    handledel = async(del:any)=>{
+        let {delclass} = this.props.delclass;
+        const result = await delclass({grade_id:del});
     }
 
     handleadd = async(e:any)=>{
-        console.log(11111111111)
         let name= e.target.name;
-        console.log(name);
         this.setState({
             [name]:e.target.value
-        },()=>{
-            console.log(name)
         })
     }
 
     handleok = async() =>{
         let {banroom,jiaoroom,classicon} = this.state;
-        console.log(banroom,jiaoroom,classicon);
         let obj={
-            name:banroom,
-            classroom:jiaoroom,
-            roomname:classicon,
-            done:'修改|删除'
-
+            grade_name:banroom,
+            room_id:jiaoroom,
+            subject_id:classicon
         };
-        arr.push(obj);
-        console.log(arr)
+        console.log(obj)
+        this.addclass(obj);
+        this.setState({
+            visible: false,
+        });
+    }
+
+    addclass=async(obj:any)=>{
+        const {addclass} = this.props.addclass;
+        const result = await addclass(obj);
+    }
+
+    getroomall = async()=>{
+        const {roomall} = this.props.roomall;
+        const result = await roomall(); 
+        this.setState({
+            roomall:result.data
+        })
+    }
+
+    getxueall = async()=>{
+        const {xueall} = this.props.xueall;
+        const result = await xueall();
+        console.log(result.data);
+        this.setState({
+            xueall:result.data
+        })
     }
 
     getData=async()=>{
         const {student} = this.props.student;
         const result = await student();
-        console.log(result);
+        console.log(result.data);
         result.data.map((item:any,index:any)=>{
-            item.id=index
+            item.id=index+'',
+            item.btn='修改|删除'
         })
-        let datas
         if(result.code === 1){
-             datas=result.data.splice(1,8);
-            console.log(datas)
-
+            this.setState({
+                list:result.data
+            })
         }
-        this.setState({
-            list:datas
-        })
     }
 }
