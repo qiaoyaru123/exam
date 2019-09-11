@@ -1,10 +1,9 @@
-
-import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
-import { FormComponentProps } from 'antd/lib/form';
-import * as React from 'react';
-import { inject, observer } from 'mobx-react';
-import {WrappedFormUtils} from 'antd/lib/form/Form'
-import './index.css';
+import { Form, Icon, Input, Button, Checkbox, message } from "antd";
+import { FormComponentProps } from "antd/lib/form";
+import * as React from "react";
+import { inject, observer } from "mobx-react";
+import { WrappedFormUtils } from "antd/lib/form/Form";
+import "./index.css";
 const success = () => {
   message.success("login succeed!");
 };
@@ -14,10 +13,10 @@ const warning = () => {
 };
 
 interface Propsinfo {
-    from:WrappedFormUtils,
-    form: any,
-    user: any,
-    props: any
+  from: WrappedFormUtils;
+  form: any;
+  user: any;
+  props: any;
 }
 
 interface Propsinfo extends FormComponentProps {
@@ -47,7 +46,6 @@ class Login extends React.Component<Propsinfo> {
           autologin: values.autologin
         };
         const result = await this.props.user.login(params);
-        console.log(result)
         if (result.code === 1) {
           success();
           this.props.history.push("/main");
@@ -124,5 +122,3 @@ class Login extends React.Component<Propsinfo> {
 }
 
 export default Form.create()(Login);
-
-

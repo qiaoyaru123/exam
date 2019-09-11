@@ -12,23 +12,46 @@ import Subjects from "../../../../component/subjects";
 import GetType from "../../../../component/getQuestionsType";
 
 interface UserFormProps extends FormComponentProps {
-  user: any;
+  selectvalue:any,
+  user:any,
   question: any;
   age: number;
   history: any;
+  location:any;
   name: string;
 }
 
-@inject("question", "user")
+@inject("question","user","selectvalue")
 @observer
-class AddQuestions extends React.Component<UserFormProps, any> {
+
+class MessagePage extends React.Component<UserFormProps, any> {
   state = {
     data: [],
     questionsstem: "",
     questionsanswer: "",
     title: ""
   };
-
+  public async componentDidMount(){
+     let item= this.props.location.state.item;
+     let params={
+        params:{
+          questions_id:item
+        }
+     }
+     const result = await this.props.question.question(params);
+     console.log(result.data)
+     this.setState({
+      questionsstem:result.data[0].title,
+      title:result.data[0].questions_stem,
+      questionsanswer:result.data[0].questions_answer
+     })
+     let obj={
+       week:result.data[0].exam_name,
+       type:result.data[0].questions_type_text,
+       subject:result.data[0].subject_text
+     }
+    this.props.selectvalue.selectvalue(obj)
+    }
   SetChange = (value: any) => {
     this.setState({
       title: value
@@ -149,4 +172,5 @@ class AddQuestions extends React.Component<UserFormProps, any> {
     );
   }
 }
-export default Form.create()(AddQuestions);
+
+export default Form.create()(MessagePage);

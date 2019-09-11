@@ -23,13 +23,11 @@ class QuestionsType extends React.Component<UserFormProps, any> {
     }
 
     SelectChanges = (value: any) => {
-        // this.setState({
-        //     value
-        // })
         window.sessionStorage.setItem("type", value)
     }
 
     public async componentDidMount() {
+        window.sessionStorage.removeItem("type");
         const result = await this.props.select.getQuestionsType();
         this.setState({ data: result.data })
     }

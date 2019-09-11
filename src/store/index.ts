@@ -8,18 +8,18 @@ import Select from "./modules/select"
 import Student from './modules/student';
 import Room from './modules/room';
 import Allstu from './modules/stulist/allstu';
-
+import SelectValue from "./modules/selectvalue"
 // 实例化
 const user =new User()   
 const question =new Question();   
 const subject =new Subject();  
 const adduser =  new Adduser(); 
-const  usershow =new  Usershow ()
+const usershow =new  Usershow ()
 const select=new Select()
 const student = new Student();
 const room = new Room();
 const allstu = new Allstu();
-
+const selectvalue=new SelectValue()
 export default {
     user,
     question,
@@ -29,5 +29,6 @@ export default {
     select,
     student,
     room,
-    allstu
+    allstu,
+    selectvalue
 };
