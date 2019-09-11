@@ -4,8 +4,6 @@ import './index.css';
 import { Table } from 'antd';
 import {observer, inject} from 'mobx-react';
 
-
-
 const columns = [
     {
         title: '教室号',
@@ -14,22 +12,16 @@ const columns = [
     {
         title: '操作',
         dataIndex: 'action',
-    },
-    
+    } 
 ];
 
-
-const arr:any=[];
-
-
-
+let arr:any=[];
 
 interface Props{
     room:any,
     result:any,
     arr:any,
-    addroom:any
-   
+    addroom:any 
 }
 
 
@@ -65,18 +57,17 @@ export default class Classbuild extends React.Component<Props> {
 
     render() {
         const { visible, loading,list ,bname,jiaoname,iconname} = this.state;
-
-
         {
             list.map((item:any,index:number)=>{
-                return arr.push({
+                   arr=[{
                     holl:item.room_text,
                     action:'删除',
-                    id:index+''
-                })
+                    id:index+'',
+                    grade_id:item.grade_id 
+
+                }]
             })
         }
-
         return (
             <div className="wrap">
                 <h1>教室管理</h1>
@@ -88,7 +79,7 @@ export default class Classbuild extends React.Component<Props> {
                              </Button>
                             <Modal
                                 visible={visible}
-                                title="添加班级名"
+                                title="添加班级"
                                 onOk={this.handleOk}
                                 onCancel={this.handleCancel}
                                 footer={[
@@ -101,28 +92,21 @@ export default class Classbuild extends React.Component<Props> {
                                 ]}
                             >
                                 <p>
-                                    <div>*班级名</div>
+                                    <div>*教室号</div>
                                     <div>
                                         <input type="text" onChange={this.handlejia} name="bname" value={bname}/>
                                     </div>
                                 </p>
-                                <p>
-                                    <div>*教室号</div>
-                                    <div>
-                                        <input type="text" onChange={this.handlejia} name="jiaoname" value={jiaoname}/>
-                                    </div>
-                                </p>
-                                <p>
-                                    <div>*课程名</div>
-                                    <div>
-                                        <input type="text" onChange={this.handlejia} name="iconname" value={iconname}/>
-                                    </div>
-                                </p>
+                               
 
                             </Modal>
                         </div>
                         <div className="handletab">
-                            <Table columns={columns} dataSource={arr} size="middle" rowKey={(record:any)=>record.id}/>
+                            <Table columns={columns} dataSource={arr} size="middle" 
+                                rowKey={(record:any)=>{
+                                    return  record.id
+                                }} onRow={this.onClickRow} 
+                            />
                         </div>
                     </div>
                 </div>
@@ -130,15 +114,22 @@ export default class Classbuild extends React.Component<Props> {
         )
     }
 
-
-
     componentDidMount(){
-        this.getData()
-        
+        this.getData();  
+    }
+
+    onClickRow =(record:any)=>{
+        return {
+            onClick:()=>{
+                let del = record.grade_id;
+                console.log(del)
+                // this.deljian(del);
+            }
+        }
     }
 
     handlejia=(e:any)=>{
-        console.log(e.target.value)
+       // console.log(e.target.value)
         let name= e.target.name;
         this.setState({
             [name]:e.target.value
@@ -171,7 +162,7 @@ export default class Classbuild extends React.Component<Props> {
         const result = await room();
         console.log(result.data);
         result.data.map((item:any,index:any)=>{
-            item.id=index
+            item.id=index+''
         })
         this.setState({
             list:result.data

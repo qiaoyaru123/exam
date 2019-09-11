@@ -6,7 +6,7 @@ class Delclass{
 
     @action async delclass(from:any): Promise<any>{
         console.log(from)
-        const result: any = await delclass(from);
+        const result: any = await delclass({data:from});
         return result;
     }
 }

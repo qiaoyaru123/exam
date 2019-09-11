@@ -1,7 +1,6 @@
 
-
 import * as React from 'react';
-import {  Form,  Select,} from 'antd'
+import { Form, Select, } from 'antd'
 import { FormComponentProps } from 'antd/lib/form';
 import { inject, observer } from 'mobx-react';
 
@@ -13,32 +12,33 @@ interface UserFormProps extends FormComponentProps {
     history: any,
     name: string;
 }
-function handleChange(value: any) {
-    console.log(`selected ${value}`);
-}
+
 @inject('select')
 @observer
+
 class QuestionsType extends React.Component<UserFormProps, any> {
+
     state = {
         data: [],
-        value: '',
     }
-    handleChanges(value: any) {
-        this.setState({
-            value
-        })
-    }
-    public async componentDidMount() {
 
-        const result = await this.props.select.subjects();
-        console.log(result)
+    SelectChanges = (value: any) => {
+        // this.setState({
+        //     value
+        // })
+        window.sessionStorage.setItem("type", value)
+    }
+
+    public async componentDidMount() {
+        const result = await this.props.select.getQuestionsType();
         this.setState({ data: result.data })
     }
+
     public render() {
-        let { data, value } = this.state;
-        return (<Select defaultValue="" style={{ width: 200 }} onChange={() => { this.handleChanges(value) }}>
-            {data.map((item:any)=><Option value={item.subject_text} key={item.subject_id}>{item.subject_text}</Option>
-        )}
+        let { data } = this.state;
+        return (<Select defaultValue="" style={{ width: 200 }} onChange={this.SelectChanges}>
+            {data.map((item: any) => <Option value={item.questions_type_id} key={item.questions_type_id}>{item.questions_type_text}</Option>
+            )}
         </Select>
         )
     }

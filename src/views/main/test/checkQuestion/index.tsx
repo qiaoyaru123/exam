@@ -3,6 +3,11 @@ import { FormComponentProps } from 'antd/lib/form';
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 import "./index.css"
+
+//引入组件
+import Week from "../../../../component/week"
+import Type from "../../../../component/getQuestionsType"
+
 interface UserFormProps extends FormComponentProps {
   question: any,
   age: number;
@@ -10,6 +15,7 @@ interface UserFormProps extends FormComponentProps {
   name: string,
   state:any
 }
+
 
 const { Option } = Select;
 const { Content } = Layout;
@@ -42,30 +48,16 @@ public state = {
                 课程类型:<span>All</span><span>javaScript下</span><span>模块化开发</span><span>移动端开发</span><span>node基础</span>
                 <span>组件化开发(vue)</span><span>组件化开发(react)</span><span>项目实战</span><span>javaScript高级</span><span>node高级</span>
               </div>
-              <div className="m-input">
+              <div className="m-input-search">
                 <span>
-                  考试类型:
-              <Select defaultValue="" style={{ width: 200 }} onChange={handleChange}>
-
-                    <Option value="周考一">周考一</Option>
-                    <Option value="周考二">周考二</Option>
-                    <Option value="周考三">周考三</Option>
-                    <Option value="月考">月考</Option>
-
-                  </Select>
+                  考试类型: 
+                   <Week/>
                 </span>
                 <span>
                   题目类型:
-              <Select defaultValue="" style={{ width: 200 }} onChange={handleChange}>
-                    <Option value="简答题">简答题</Option>
-                    <Option value="代码阅读题">代码阅读题</Option>
-                    <Option value="代码补全题">代码补全题</Option>
-                    <Option value="修改bug">修改bug</Option>
-                    <Option value="手写代码">手写代码</Option>
-
-                  </Select>
+                  <Type/>
                 </span>
-                <span><Button>查询</Button></span>
+                <span><Button><Icon type="search" />查询</Button></span>
               </div>
               <List
                 itemLayout="horizontal"

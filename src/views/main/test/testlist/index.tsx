@@ -1,81 +1,168 @@
 import * as React from 'react';
-import Confirm from '../../../../component/confirm/comfirm';
 import './index.css';
 import { Table } from 'antd';
+import { Modal, Button } from 'antd';
 
 import { inject, observer } from 'mobx-react';
 
 interface PropsInfo {
     Tab: any,
-    path: any
+    path: any,
+    id:any,
+    examall:any,
+    loading:any,
+    visible:any,
+    typename:any,
+    done:any,
+    arr:any,
+    typeadd:any
 }
 
 const columns = [
     {
         title: '类型ID',
-        dataIndex: 'name',
+        dataIndex: 'typeid',
     },
     {
         title: '类型名称',
-        dataIndex: 'age',
+        dataIndex: 'tname',
     },
     {
         title: '操作',
-        dataIndex: 'address',
+        dataIndex: 'zuo',
     },
-];
-const data = [
-    {
-        key: '1',
-        name: '774318-730z8m',
-        age: '简答题',
-        address: '',
-    },
-    {
-        key: '2',
-        name: 'br9d6s-wh46i',
-        age: '代码阅读题',
-        address: '',
-    },
-    {
-        key: '3',
-        name: 'fwfit-wla1q',
-        age: '代码补全',
-        address: '',
-    },
-    {
-        key: '4',
-        name: 'n66k4n-i9zpen',
-        age: '修改bug',
-        address: '',
-    },
-    {
-        key: '5',
-        name: 'w8i73-r8oai',
-        age: '手写代码',
-        address: '',
-    }
 ];
 
-@inject('user')
+const arr:any=[];
+
+@inject('examall')
 @observer
 
 class Testlist extends React.Component<PropsInfo> {
+    state={
+        loading: false,
+        visible: false,
+        list:[],
+        tyname:''
+        
+
+    }
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+
+    // handleOk = () => {
+    //     this.setState({ loading: true });
+    //     setTimeout(() => {
+    //         this.setState({ loading: false, visible: false });
+    //     }, 3000);
+    // };
+
+    handleCancel = () => {
+        this.setState({ visible: false });
+    };
+
     public render() {
+       
+        const {loading,visible,list,tyname} = this.state;
+
+        {
+            list.map((item:any,index:any)=>{
+                return arr.push({
+                    typeid:item.questions_type_id,
+                    tname:item.questions_type_text,
+                    zuo:'',
+                    id:item.id
+                })
+            })
+        }
+
         return (
-            <div className="test">
-                <h3>试题分类</h3>
-                <div className="dem">
-                    <div className="dom">
-                        <Confirm />
+            <div className="wrapper">
+            <h1>试题分类</h1>
+            <div className="icon">
+                <div className="box">
+                    <div className="handletian">
+                        <Button type="primary" onClick={this.showModal}>
+                            +添加类型
+                         </Button>
+                        <Modal
+                            visible={visible}
+                            title="创建新类型"
+                           
+                            onCancel={this.handleCancel}
+                            footer={[
+                                <Button key="back" onClick={this.handleCancel}>
+                                    取消
+                             </Button>,
+                                <Button key="back" onClick={this.handleok}>
+                                    提交
+                         </Button>,
+                            ]}
+                        >
+                            <p>
+                                <input type="text" placeholder="请输入试题类型" onChange={this.handletype} value={tyname} name="tyname"/>
+                            </p>
+                        </Modal>
                     </div>
-                    <div className="tab">
-                        <Table columns={columns} dataSource={data} size="middle" /> 
+                    <div className="handletaber">
+                            <Table columns={columns} dataSource={arr} size="middle" 
+                            rowKey={(record:any)=>{
+                                return record.id
+                            }}
+                            />
                     </div>
                 </div>
             </div>
+        </div>
         )
     }
-}
+
+
+    componentDidMount(){
+        this.getdata();
+    }
+
+    handletype = (e:any) =>{
+        let name = e.target.name;
+        this.setState({
+            [name]:e.target.value
+        })
+    }
+
+    handleok = () =>{
+        let {tyname}  = this.state;
+        console.log(tyname);
+        let obj={
+            typeid:tyname,
+            zuo:'',
+            
+        }
+        arr.push(obj);
+        this.typeadd(obj);
+        this.setState({ visible: false });
+    }
+
+    typeadd =async(obj:any)=>{
+        const {typeadd} = this.props.examall;
+        console.log(typeadd);
+        const result = await typeadd(obj);
+        console.log(result);
+    }
+
+    getdata = async() =>{
+        const {examall} = this.props.examall;
+        const result = await examall();
+        console.log(result)
+        result.map((item:any,index:any)=>{
+            item.id=index+''
+        })
+        this.setState({
+            list:result
+        })
+        }
+    }
 
 export default Testlist

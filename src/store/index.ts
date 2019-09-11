@@ -1,6 +1,6 @@
 // 引入user模块
 import User from "./modules/user";
-import Question from "./modules/classmange/student/question";
+import Question from './modules/question';
 import Subject from "./modules/subject";
 import Adduser from './modules/adduser';
 import Usershow from "./modules/usershow"
@@ -11,6 +11,9 @@ import Allstu from './modules/stulist/allstu';
 import Addclass from './modules/classmange/class/addclass';
 import Addroom from './modules/classmange/room/addroom';
 import Delclass from './modules/classmange/class/delclass';
+import Examall from './modules/examtype';
+import Roomall from './modules/classmange/class/roomall';
+import Xueall from './modules/classmange/class/xueall';
 
 // 实例化
 const user =new User()   
@@ -25,6 +28,10 @@ const allstu = new Allstu();
 const addclass = new Addclass();
 const addroom =new Addroom();
 const delclass = new Delclass();
+const examall = new Examall();
+const roomall = new Roomall();
+const xueall = new Xueall();
+
 
 export default {
     user,
@@ -38,5 +45,8 @@ export default {
     allstu,
     addclass,
     addroom,
-    delclass
+    delclass,
+    examall,
+    roomall,
+    xueall
 };

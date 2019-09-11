@@ -83,9 +83,7 @@ export default class Piclass extends React.Component <Props>{
                 <h1>待批班级</h1>
                 <div className="qwe">
                     <div>
-                       
-                        <Table columns={columns} dataSource={data} size="middle" />
-                        
+                        {/* <Table columns={columns} dataSource={data} size="middle" rowKey={(record:any)=>record.id}/> */}
                     </div>,
                 </div>
             </div>

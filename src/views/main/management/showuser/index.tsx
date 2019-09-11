@@ -165,7 +165,10 @@ class Showuser extends React.Component<UserFormProps, any> {
                     </div>
                     <div className="m-tab">
                         <h2>{title}</h2>
-                        <Table dataSource={data} columns={columns} rowKey={(record: any) => record.id} />;
+                        <Table dataSource={data} columns={columns} 
+                        rowKey={(record:any)=>{
+                            return  record.id
+                        }}  />;
                     </div>
                 </div>
             </Content>

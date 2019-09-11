@@ -1,17 +1,14 @@
 import * as React from 'react';
 import './index.css';
 import { DatePicker } from 'antd';
-import { any } from 'prop-types';
-
-
+// import { any } from 'prop-types';
 
 const { RangePicker } = DatePicker;
 
 interface Props {
     startValue: any,
     value: any,
-    state: any,
-   
+    state: any 
 }
 
 export default class Addexam extends React.Component<Props> {
@@ -22,7 +19,6 @@ export default class Addexam extends React.Component<Props> {
         endOpen: false,
 
     };
-
 
     public render() {
         const { startValue, endValue, endOpen } = this.state;
@@ -60,26 +56,12 @@ export default class Addexam extends React.Component<Props> {
                         <div className="time">
                             <h4>考试时间：</h4>
                             <div>
-                                {/* <DatePicker
-                                    dateRender={current => {
-                                        const style = {};
-                                        if (current.date() === 1) {
-                                            // style.border = '1px solid #1890ff';
-                                            // style.borderRadius = '50%';
-                                        }
-                                        return (
-                                            <div className="ant-calendar-date" style={style}>
-                                                {current.date()}
-                                            </div>
-                                        );
-                                    }}
-                                /> */}
+                               
                                 <RangePicker
                                     dateRender={current => {
                                         const style = {};
                                         if (current.date() === 1) {
-                                            // style.border = '1px solid #1890ff';
-                                            // style.borderRadius = '50%';
+                                            console.log(1)
                                         }
                                         return (
                                             <div className="ant-calendar-date" style={style}>

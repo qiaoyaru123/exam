@@ -2,7 +2,6 @@ import { Button, Form, Icon, Input, Layout, Select, Breadcrumb, Table } from 'an
 import { FormComponentProps } from 'antd/lib/form';
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
-const { Column, ColumnGroup } = Table;
 import "./index.css"
 const { Option } = Select;
 const { Content } = Layout;
@@ -11,6 +10,7 @@ interface UserFormProps extends FormComponentProps {
   age: number;
   history: any,
   name: string;
+  
 }
 function handleChange(value: any) {
   console.log(`selected ${value}`);
