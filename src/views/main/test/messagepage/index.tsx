@@ -12,46 +12,47 @@ import Subjects from "../../../../component/subjects";
 import GetType from "../../../../component/getQuestionsType";
 
 interface UserFormProps extends FormComponentProps {
-  selectvalue:any,
-  user:any,
+  selectvalue: any;
+  user: any;
   question: any;
   age: number;
   history: any;
-  location:any;
+  location: any;
   name: string;
+  id: string;
 }
 
-@inject("question","user","selectvalue")
+@inject("question", "user", "selectvalue")
 @observer
-
 class MessagePage extends React.Component<UserFormProps, any> {
   state = {
     data: [],
     questionsstem: "",
     questionsanswer: "",
-    title: ""
+    title: "",
+    weekvalue:"",
+    subjectvalue:"",
+    typevalue:""
   };
-  public async componentDidMount(){
-     let item= this.props.location.state.item;
-     let params={
-        params:{
-          questions_id:item
-        }
-     }
-     const result = await this.props.question.question(params);
-     console.log(result.data)
-     this.setState({
-      questionsstem:result.data[0].title,
-      title:result.data[0].questions_stem,
-      questionsanswer:result.data[0].questions_answer
-     })
-     let obj={
-       week:result.data[0].exam_name,
-       type:result.data[0].questions_type_text,
-       subject:result.data[0].subject_text
-     }
-    this.props.selectvalue.selectvalue(obj)
-    }
+  public async componentDidMount() {
+    let item = this.props.location.state.item;
+    let params = {
+      params: {
+        questions_id: item
+      }
+    };
+    const result = await this.props.question.question(params);
+    console.log(result.data);
+    this.setState({
+      questionsstem: result.data[0].title,
+      title: result.data[0].questions_stem,
+      questionsanswer: result.data[0].questions_answer,
+      weekvalue: result.data[0].exam_name,
+      typevalue: result.data[0].questions_type_text,
+      subjectvalue: result.data[0].subject_text,
+
+    });
+  }
   SetChange = (value: any) => {
     this.setState({
       title: value
@@ -109,7 +110,8 @@ class MessagePage extends React.Component<UserFormProps, any> {
   };
 
   public render() {
-    let { title, questionsanswer, questionsstem } = this.state;
+    let { title, questionsanswer, questionsstem,weekvalue,subjectvalue, typevalue } = this.state;
+    console.log(weekvalue,subjectvalue, typevalue )
     return (
       <Content style={{ margin: "0 16px" }}>
         <Breadcrumb style={{ margin: "16px 0", fontSize: 20 }}>
@@ -146,17 +148,17 @@ class MessagePage extends React.Component<UserFormProps, any> {
 
           <div className="m-item-ip">
             <div>请选择考试类型:</div>
-            <Week />
+            <Week val={weekvalue}/>
           </div>
 
           <div className="m-item-ip">
             <div>请选择课程类型:</div>
-            <Subjects />
+            <Subjects val={subjectvalue}/>
           </div>
 
           <div className="m-item-ip">
             <div>请选择题目类型:</div>
-            <GetType />
+            <GetType val={typevalue}/>
           </div>
           <div className="m-con">
             答案信息

@@ -5,10 +5,10 @@ import { Table } from 'antd';
 
 import { inject, observer } from 'mobx-react';
 
-interface PropsInfo {
-    Tab: any,
-    path: any
-}
+// interface PropsInfo {
+//     Tab: any,
+//     path: any
+// }
 
 const columns = [
     {
@@ -60,7 +60,7 @@ const data = [
 @inject('user')
 @observer
 
-class Testlist extends React.Component<PropsInfo> {
+class Testlist extends React.Component {
     public render() {
         return (
             <div className="test">

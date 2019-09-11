@@ -4,6 +4,7 @@ import * as React from "react";
 import { inject, observer } from "mobx-react";
 import { WrappedFormUtils } from "antd/lib/form/Form";
 import "./index.css";
+
 const success = () => {
   message.success("login succeed!");
 };
