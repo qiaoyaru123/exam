@@ -24,13 +24,11 @@ class Subjects extends React.Component<UserFormProps, any> {
     }
 
     SelectChanges = (value: any) => {
-        // this.setState({
-        //     value
-        // })
         window.sessionStorage.setItem("subject", value)
     }
 
     public async componentDidMount() {
+        window.sessionStorage.removeItem("subject");
         const result = await this.props.select.subjects();
         this.setState({ data: result.data })
     }

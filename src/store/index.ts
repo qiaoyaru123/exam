@@ -14,13 +14,14 @@ import Delclass from './modules/classmange/class/delclass';
 import Examall from './modules/examtype';
 import Roomall from './modules/classmange/class/roomall';
 import Xueall from './modules/classmange/class/xueall';
+import SelectValue from "./modules/selectvalue";
 
 // 实例化
 const user =new User()   
 const question =new Question();   
 const subject =new Subject();  
 const adduser =  new Adduser(); 
-const  usershow =new  Usershow ()
+const usershow =new  Usershow ()
 const select=new Select()
 const student = new Student();
 const room = new Room();
@@ -31,6 +32,7 @@ const delclass = new Delclass();
 const examall = new Examall();
 const roomall = new Roomall();
 const xueall = new Xueall();
+const selectvalue=new SelectValue();
 
 
 export default {
@@ -48,5 +50,6 @@ export default {
     delclass,
     examall,
     roomall,
-    xueall
+    xueall,
+    selectvalue
 };

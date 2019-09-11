@@ -16,7 +16,7 @@ import Addexam from 'src/views/main/examinations/addexam/index';
 import Classbuild from 'src/views/main/classManagement/classbuild/index';
 import Roombuild from 'src/views/main/classManagement/roombuild/index';
 import Piclass from 'src/views/main/Marking/piclass/index';
-
+import Messagepage from "../views/main/test/messagepage/index"
 
 
 
@@ -44,8 +44,12 @@ export default [{
                     },
                     {
                         component: CheckQuestion,
-                        path: '/main/test/checkQuestion'
+                        path: '/main/test/checkQuestion',
                     },
+                    {
+                        component:Messagepage,
+                        path:'/main/test/Messagepage'
+                    }
                 ]
             },
             {
