@@ -5,12 +5,6 @@ import { Modal, Button } from 'antd';
 
 import { inject, observer } from 'mobx-react';
 
-<<<<<<< HEAD
-// interface PropsInfo {
-//     Tab: any,
-//     path: any
-// }
-=======
 interface PropsInfo {
     Tab: any,
     path: any,
@@ -23,7 +17,6 @@ interface PropsInfo {
     arr:any,
     typeadd:any
 }
->>>>>>> 714bbfaa7741bbbecba312deff57b044e0323371
 
 const columns = [
     {
@@ -45,9 +38,6 @@ const arr:any=[];
 @inject('examall')
 @observer
 
-<<<<<<< HEAD
-class Testlist extends React.Component {
-=======
 class Testlist extends React.Component<PropsInfo> {
     state={
         loading: false,
@@ -63,18 +53,10 @@ class Testlist extends React.Component<PropsInfo> {
         });
     };
 
-    // handleOk = () => {
-    //     this.setState({ loading: true });
-    //     setTimeout(() => {
-    //         this.setState({ loading: false, visible: false });
-    //     }, 3000);
-    // };
-
     handleCancel = () => {
         this.setState({ visible: false });
     };
 
->>>>>>> 714bbfaa7741bbbecba312deff57b044e0323371
     public render() {
        
         const {loading,visible,list,tyname} = this.state;
@@ -145,7 +127,6 @@ class Testlist extends React.Component<PropsInfo> {
 
     handleok = () =>{
         let {tyname}  = this.state;
-        console.log(tyname);
         let obj={
             typeid:tyname,
             zuo:'',
@@ -158,15 +139,12 @@ class Testlist extends React.Component<PropsInfo> {
 
     typeadd =async(obj:any)=>{
         const {typeadd} = this.props.examall;
-        console.log(typeadd);
         const result = await typeadd(obj);
-        console.log(result);
     }
 
     getdata = async() =>{
         const {examall} = this.props.examall;
         const result = await examall();
-        console.log(result)
         result.map((item:any,index:any)=>{
             item.id=index+''
         })

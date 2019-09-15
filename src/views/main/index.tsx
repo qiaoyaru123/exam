@@ -1,40 +1,45 @@
 import * as React from "react";
-import { Layout, Menu, Icon } from "antd";
+import {
+  Layout,
+  Menu,
+  Icon,
+  Form
+} from "antd";
 import { NavLink } from "react-router-dom";
 import { sliderBar } from "../../config/index";
+import { inject, observer } from "mobx-react";
 import RouterView from "../../router/RouterView";
-const { Header, Sider, Content } = Layout;
+import Headers from "../../component/Headers"
+import "./index.css"
+
 const { SubMenu } = Menu;
-import "./index.css";
+const { Sider, Content } = Layout;
 
-// interface Propsinfo {
-//     form:any,
-//     props:any
-// }
+interface PropsInfo {
+  user: any,
+  abc?: string,
+  form?: any
+}
 
-// interface Propsinfo extends FormComponentProps {
-//     history: any;
-//     from: WrappedFormUtils
-//     collapsed: boolean
-//     collapsible: boolean
-//     props:any
-//   }
+@inject('user')
+@observer
 
-class Main extends React.Component {
+class Main extends React.Component<PropsInfo, any> {
   state = {
     sliderBar,
-    collapsed: false
+    collapsed: false,
+    visible: false,
+    loading: false,
+    imageUrl:"",
+    user_id:""
   };
 
-  onCollapse = (collapsed: any) => {
-    console.log(collapsed);
-    this.setState({ collapsed });
-  };
-
+ 
   public render() {
+
     return (
       <Layout>
-        <Header className="title">北京八维研修学院</Header>
+            <Headers/>
         <Layout style={{ minHeight: "90vh" }}>
           <Sider
             className="slider"
@@ -45,38 +50,38 @@ class Main extends React.Component {
               {this.state.sliderBar.map(slider => {
                 return slider.children === undefined ||
                   slider.children.length < 1 ? (
-                  <Menu.Item key={slider.id}>
-                    <Icon type={slider.icon} />
-                    <span>
-                      <NavLink to={slider.path}>{slider.name}</NavLink>
-                    </span>
-                  </Menu.Item>
-                ) : (
-                  <SubMenu
-                    key={slider.id}
-                    title={
-                      <div>
-                        <Icon type={slider.icon} />
-                        <span>
-                          <NavLink to={slider.path}>{slider.name}</NavLink>
-                        </span>
-                      </div>
-                    }
-                  >
-                    {slider.children &&
-                      slider.children.map(children => {
-                        return (
-                          <Menu.Item key={children.id}>
-                            <span>
-                              <NavLink to={children.path}>
-                                {children.name}
-                              </NavLink>
-                            </span>
-                          </Menu.Item>
-                        );
-                      })}
-                  </SubMenu>
-                );
+                    <Menu.Item key={slider.id}>
+                      <Icon type={slider.icon} />
+                      <span>
+                        <NavLink to={slider.path}>{slider.name}</NavLink>
+                      </span>
+                    </Menu.Item>
+                  ) : (
+                    <SubMenu
+                      key={slider.id}
+                      title={
+                        <div>
+                          <Icon type={slider.icon} />
+                          <span>
+                            <NavLink to={slider.path}>{slider.name}</NavLink>
+                          </span>
+                        </div>
+                      }
+                    >
+                      {slider.children &&
+                        slider.children.map(children => {
+                          return (
+                            <Menu.Item key={children.id}>
+                              <span>
+                                <NavLink to={children.path}>
+                                  {children.name}
+                                </NavLink>
+                              </span>
+                            </Menu.Item>
+                          );
+                        })}
+                    </SubMenu>
+                  );
               })}
             </Menu>
           </Sider>
@@ -92,4 +97,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default Form.create()(Main);

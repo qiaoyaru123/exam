@@ -47,3 +47,28 @@
 .ant-spin-nested-loading{
     min-Height: 400px;
 }
+
+.m-header-img{
+  width: 120px;
+  display:inline-block 
+}
+.m-header-img img{
+    width: 100%
+}
+.m-header-user{
+    float: right;
+    font-size: 16px;
+    flex-direction: row-reverse
+}
+.m-header-user img{
+width:40px;
+height:40px;
+display: inline-block;
+margin-right: 10px;
+border: 1px solid #ccc;
+border-radius: 100%;
+background: #ccc
+}
+.ant-divider-horizontal{
+   margin:0;
+}

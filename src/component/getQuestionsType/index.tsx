@@ -21,6 +21,7 @@ class QuestionsType extends React.Component<UserFormProps, any> {
   };
 
   SelectChanges = (value: any) => {
+    this.setState({value})
     window.sessionStorage.setItem("type", value);
   };
 
@@ -31,8 +32,8 @@ class QuestionsType extends React.Component<UserFormProps, any> {
   }
 
   public componentWillReceiveProps(nextProps: any) {
-
     this.setState({ value: nextProps.val });
+    window.sessionStorage.setItem("type", nextProps.val);
   }
 
   public render() {

@@ -21,19 +21,28 @@ class Week extends React.Component<any, any> {
     data: [],
     value: ""
   };
+
   SelectChanges = (value: any) => {
     this.setState({ value });
     window.sessionStorage.setItem("week", value);
   };
+
   public async componentDidMount() {
     window.sessionStorage.removeItem("week");
     const result = await this.props.select.week();
     this.setState({ data: result.data});
   }
+
   public componentWillReceiveProps(nextProps:any){
        this.setState({value:nextProps.val})  
+       window.sessionStorage.setItem("week", nextProps.val);
+  }
+ 
+  public componentWillUnmount(){
+    return this.setState({})
   }
 
+   
   public render() {
     let { data, value } = this.state;
     return (

@@ -1,5 +1,5 @@
 import {observable, action} from 'mobx';
-import {question,addquestion,examsubject} from '../../service/index';
+import {question,addquestion,examsubject,setquestion} from '../../service/index';
 
 // 引入mobx
 class Question{
@@ -18,6 +18,12 @@ class Question{
     //筛选数据
     @action async examsubject():Promise<any>{
         const result: any = await examsubject();
+        return result;
+    }
+    
+    //修改试题
+    @action async setquestion(params:any):Promise<any>{
+        const result: any = await setquestion(params);
         return result;
     }
 }

@@ -52,7 +52,6 @@ const data = [
 
 const arr=[];
 
-
 interface Props{
     examlist:any,
     allstu:any
@@ -60,9 +59,6 @@ interface Props{
 
 @inject('allstu')
 @observer
-
-
-
 
 export default class Piclass extends React.Component <Props>{
     state={

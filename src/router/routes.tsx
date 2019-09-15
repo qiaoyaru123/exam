@@ -102,6 +102,10 @@ let Messagepage = Loadable({
   loading: Loading,
   loader: () => import("../views/main/test/messagepage/index")
 });
+let Detailpage = Loadable({
+  loading: Loading,
+  loader: () => import("../views/main/test/detailpage/index")
+});
 
 // export default [
 //   {
@@ -173,7 +177,11 @@ export default [
                     {
                         component: Messagepage,
                         path: "/main/test/Messagepage"
-                    }
+                    },
+                    {
+                      component: Detailpage,
+                      path: "/main/test/Detailpage"
+                  }
                 ]
             },
             {

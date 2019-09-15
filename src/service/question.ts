@@ -15,6 +15,10 @@ export function examsubject() {
     return request.get('/exam/subject');
 }
 
+//编辑修改试题
+export function setquestion(params:any){
+    return request.put('/exam/questions/update',params);
+}
 
 
 

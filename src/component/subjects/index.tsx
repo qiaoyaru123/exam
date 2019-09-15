@@ -21,6 +21,7 @@ class Subjects extends React.Component<UserFormProps, any> {
   };
 
   SelectChanges = (value: any) => {
+    this.setState({value})
     window.sessionStorage.setItem("subject", value);
   };
 
@@ -32,6 +33,7 @@ class Subjects extends React.Component<UserFormProps, any> {
 
   public componentWillReceiveProps(nextProps: any) {
     this.setState({ value: nextProps.val });
+    window.sessionStorage.setItem("subject", nextProps.val);
   }
 
   public render() {
@@ -43,7 +45,7 @@ class Subjects extends React.Component<UserFormProps, any> {
         onChange={this.SelectChanges}
       >
         {data.map((item: any) => (
-          <Option value={item.subject_id} key={item.subject_id}>
+          <Option value={item.subject_id} key={item.subject_id}  >
             {item.subject_text}
           </Option>
         ))}

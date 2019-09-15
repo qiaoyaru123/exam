@@ -1,4 +1,4 @@
-import { Form, Icon, Input, Button, Checkbox, message } from "antd";
+import { Form, Icon, Input, Button, Checkbox, message} from "antd";
 import { FormComponentProps } from "antd/lib/form";
 import * as React from "react";
 import { inject, observer } from "mobx-react";
@@ -47,10 +47,9 @@ class Login extends React.Component<Propsinfo> {
           autologin: values.autologin
         };
         const result = await this.props.user.login(params);
-        console.log(result)
         if (result.code === 1) {
           success();
-          this.props.history.push("/main");
+          this.props.history.push("/main")
         } else {
           warning();
           values.username = "";
