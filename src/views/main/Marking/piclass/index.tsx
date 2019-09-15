@@ -1,17 +1,16 @@
 import * as React from 'react';
 import './index.css';
 import { Table } from 'antd';
-
 import {inject,observer} from 'mobx-react';
 
 const columns = [
     {
         title: '班级名',
-        dataIndex: 'roomname',
+        dataIndex: 'grade_name',
     },
     {
         title: '课程名称',
-        dataIndex: 'classname',
+        dataIndex: 'subject_text',
     },
     {
         title: '阅卷状态',
@@ -19,16 +18,17 @@ const columns = [
     },
     {
         title: '课程名称',
-        uni: 'classname',
+        dataIndex: 'subject_text',
     },
     {
         title: '成材率',
-        dataIndex: 'live',
+        dataIndex: 'room_text',
     },{
         title: '操作',
         dataIndex: 'done',
     }
 ];
+
 const data = [
     {
         key: '1',
@@ -50,19 +50,16 @@ const data = [
     },
 ];
 
-const arr=[];
-
-
 interface Props{
     examlist:any,
-    allstu:any
+    allstu:any,
+    getexam:any,
+    addclass:any,
+    history:any
 }
 
-@inject('allstu')
+@inject('getexam')
 @observer
-
-
-
 
 export default class Piclass extends React.Component <Props>{
     state={
@@ -71,20 +68,20 @@ export default class Piclass extends React.Component <Props>{
    
     render() {
         let {list} = this.state;
-        {
-            list.map((item:any,index:number)=>{
-                return arr.push({
-                   
-                })
-            })
-        }
+        
         return (
             <div className="wrap">
                 <h1>待批班级</h1>
                 <div className="qwe">
                     <div>
-                        {/* <Table columns={columns} dataSource={data} size="middle" rowKey={(record:any)=>record.id}/> */}
-                    </div>,
+                        <Table columns={columns} dataSource={list} size="middle" 
+                        rowKey={(record: any) => {
+                            console.log(record.id)
+                            return record.id
+                        }}
+                        onRow={this.onClickRow}
+                        />
+                    </div>
                 </div>
             </div>
         )
@@ -94,12 +91,39 @@ export default class Piclass extends React.Component <Props>{
         this.getData();
     }
 
+    onClickRow = (record:any)=>{
+        return {
+            onClick:()=>{
+                console.log(record);
+                let ind=record.id;
+                console.log(ind); 
+                this.getxiangexam(ind);
+            }
+        }
+    }
+
+    getxiangexam =async(ind:any) =>{
+        let {history} = this.props;
+        const {xiangexam} = this.props.getexam; 
+        const result = await xiangexam();
+        console.log(result.exam)
+        let datas=result.exam[ind];
+        history.push({
+            pathname:`/main/Marking/pixiang/${datas.exam_student_id}`,
+            query:datas
+        })   
+    }
+
     getData=async ()=>{
-        const {allstu} = this.props.allstu;
-        const result = await allstu();
-        console.log(result)
+        const {getexam} = this.props.getexam;
+        const result = await getexam();
+        console.log(result.data);
+        result.data.map((item:any,index:any)=>{
+            item.done='批卷',
+            item.id=index+''
+        })
         this.setState({
-            list:result
+            list:result.data
         })
     }
 }

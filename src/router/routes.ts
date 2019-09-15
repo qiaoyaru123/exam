@@ -16,7 +16,9 @@ import Addexam from 'src/views/main/examinations/addexam/index';
 import Classbuild from 'src/views/main/classManagement/classbuild/index';
 import Roombuild from 'src/views/main/classManagement/roombuild/index';
 import Piclass from 'src/views/main/Marking/piclass/index';
-import Messagepage from "../views/main/test/messagepage/index"
+import Messagepage from "../views/main/test/messagepage/index";
+import Pixiang from '../views/main/Marking/pixiang/index';
+
 
 
 
@@ -104,8 +106,11 @@ export default [{
                     path:'/main/Marking/piclass',
                     component:Piclass
                 },{
+                    path:'/main/Marking/pixiang/:exam_student_id',
+                    component:Pixiang
+                },{
                     path: '/main/Marking',
-                    redirect: '/main/Marking/piclass'
+                    redirect: '/main/Marking/piclass' 
                 }]
             },
             {

@@ -15,6 +15,9 @@ import Examall from './modules/examtype';
 import Roomall from './modules/classmange/class/roomall';
 import Xueall from './modules/classmange/class/xueall';
 import SelectValue from "./modules/selectvalue";
+import Delroom from './modules/classmange/room/delroom';
+import Studentall from './modules/classmange/student/studentall';
+import GetExam from './modules/exambuild/getexam';
 
 // 实例化
 const user =new User()   
@@ -33,6 +36,9 @@ const examall = new Examall();
 const roomall = new Roomall();
 const xueall = new Xueall();
 const selectvalue=new SelectValue();
+const delroom = new Delroom();
+const studentall= new Studentall();
+const getexam = new GetExam();
 
 
 export default {
@@ -51,5 +57,8 @@ export default {
     examall,
     roomall,
     xueall,
-    selectvalue
+    selectvalue,
+    delroom,
+    studentall,
+    getexam
 };

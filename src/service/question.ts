@@ -15,6 +15,11 @@ export function examsubject() {
     return request.get('/exam/subject');
 }
 
+//获取试卷列表
+export function examlie() {
+    return request.get('/exam/exam');
+}
+
 
 
 

@@ -1,41 +1,60 @@
-import { Button, Form, Icon, Input, Layout, Select, Breadcrumb, Table } from 'antd'
+import { Button, Form, Input, Layout, Select, Breadcrumb, Table } from 'antd'
 import { FormComponentProps } from 'antd/lib/form';
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
-import "./index.css"
+import "./index.css";
+
 const { Option } = Select;
 const { Content } = Layout;
+
 interface UserFormProps extends FormComponentProps {
   question: any,
   age: number;
   history: any,
-  name: string;
-  
+  name: string,
+  studentall:any,
+  key:any,
+  id:any,
+  roomall:any,
+  classall:any
 }
-function handleChange(value: any) {
-  console.log(`selected ${value}`);
-}
+
 const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
+    title: '姓名',
+    dataIndex: 'student_name',
     width: '20%',
   },
   {
-    title: 'Gender',
-    dataIndex: 'gender',
+    title: '学号',
+    dataIndex: 'student_id',
+    width: '20%',
+  },{
+    title: '班级',
+    dataIndex: '',
     width: '20%',
   },
   {
-    title: 'Email',
-    dataIndex: 'email',
+    title: '教室',
+    dataIndex: '',
+    width: '20%',
+  },
+  {
+    title: '密码',
+    dataIndex: 'student_pwd',
+    width: '20%',
+  },
+  {
+    title: '操作',
+    dataIndex: 'done',
     width: '20%',
   },
 ];
 
 
-@inject('question')
+@inject('question','studentall','roomall')
 @observer
+
 class Student extends React.Component<UserFormProps, any> {
   state = {
     data: [{
@@ -52,23 +71,23 @@ class Student extends React.Component<UserFormProps, any> {
     value: "",
     pagination: {},
     loading: false,
+    list:[],
+    roomall:[],
+    classall:[]
   }
-  public async componentDidMount() {
-    const result = await this.props.question.question();
 
-    this.setState({ data: result.data })
-  }
   handleChanges(value: any) {
     this.setState({
       value
     })
   }
+
   handleTableChange = (pagination:any, filters:any, sorter:any) => {
         console.log(pagination, filters,sorter)
   };
+
   public render() {
-    let { data, value } = this.state;
-    // const {getFieldProps} = this.props.form
+    let {value,roomall,classall  } = this.state;
     return (
       <Content style={{ margin: '0 16px' }}>
         <Breadcrumb style={{ margin: '16px 0', fontSize: 20 }}>
@@ -77,33 +96,21 @@ class Student extends React.Component<UserFormProps, any> {
         <div style={{ padding: 24, background: '#fff', minHeight: 530 }}>
           <div className="m-header-student">
             <Input placeholder="输入学生姓名..." />
-            <Select value="" style={{ width: 200, marginLeft: 30 }} onChange={() => { this.handleChanges(value) }}>
-
-              <Option value="javaScript上">javaScript上</Option>
-              <Option value="javaScript下">javaScript下</Option>
-              <Option value="模块化开发">模块化开发</Option>
-              <Option value="移动端开发">移动端开发</Option>
-              <Option value="node基础">node基础</Option>
-              <Option value="组件化开发(vue)">组件化开发(vue)</Option>
-              <Option value="渐进式开发(react)">渐进式开发(react)</Option>
-              <Option value="项目实战">项目实战</Option>
-              <Option value="javaScript高级">javaScript高级</Option>
-              <Option value="node高级">node高级</Option>
-
+            <Select defaultValue="" 
+            style={{ width: 200, marginLeft: 30 }} 
+            onChange={() => { this.handleChanges(value) }}>
+                {
+                  roomall.map((item: any, index: any) => {
+                      return <Option value={item.room_id} key={index}>{item.room_text}</Option>
+                  })
+                }
             </Select>
             <Select value="" style={{ width: 200, margin: "0 30px" }} onChange={() => { this.handleChanges(value) }}>
-
-              <Option value="javaScript上">javaScript上</Option>
-              <Option value="javaScript下">javaScript下</Option>
-              <Option value="模块化开发">模块化开发</Option>
-              <Option value="移动端开发">移动端开发</Option>
-              <Option value="node基础">node基础</Option>
-              <Option value="组件化开发(vue)">组件化开发(vue)</Option>
-              <Option value="渐进式开发(react)">渐进式开发(react)</Option>
-              <Option value="项目实战">项目实战</Option>
-              <Option value="javaScript高级">javaScript高级</Option>
-              <Option value="node高级">node高级</Option>
-
+              {
+                  classall.map((item: any, index: any) => {
+                      return <Option value={item.grade_name} key={index}>{item.grade_name}</Option>
+                  })
+                }
             </Select>
             <Button>搜索</Button>
             <Button>重置</Button>
@@ -111,8 +118,11 @@ class Student extends React.Component<UserFormProps, any> {
           <div className="m-item-stud">
             <Table
               columns={columns}
-              rowKey={record => record.key}
-              dataSource={this.state.data}
+              rowKey={(record:any) =>{ 
+              //console.log(record.id)  
+                return record.id
+              }}
+              dataSource={this.state.list}
               pagination={this.state.pagination}
               loading={this.state.loading}
               onChange={this.handleTableChange}
@@ -121,6 +131,43 @@ class Student extends React.Component<UserFormProps, any> {
         </div>
       </Content>
     )
+  }
+
+
+  componentDidMount(){
+    this.getstuall();
+    this.getroomall();
+    this.getclassall();
+  }
+
+  getroomall = async()=>{
+    const {roomall} = this.props.roomall;
+    const result =await roomall();
+    console.log(result.data);
+    this.setState({
+      roomall:result.data
+    })
+  }
+
+  getclassall = async() =>{
+    const {classall} = this.props.studentall;
+    const result = await classall();
+    
+    this.setState({
+      classall:result.data
+    })
+  }
+
+  getstuall =async()=>{
+    const {studentall} = this.props.studentall;
+    const result =await studentall();
+    result.data.map((item:any,index:any)=>{
+     item.id=index+"",
+     item.done='删除'
+    })
+    this.setState({
+      list:result.data
+    })
   }
 }
 

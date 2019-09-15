@@ -43,7 +43,6 @@ class Week extends React.Component<UserFormProps, any> {
             {data.map((item: any) => <Option value={item.exam_id} key={item.exam_id}>{item.exam_name}</Option>
             )}
         </Select>
-
         )
     }
 }

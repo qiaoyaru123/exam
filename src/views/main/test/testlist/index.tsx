@@ -1,8 +1,7 @@
 import * as React from 'react';
 import './index.css';
 import { Table } from 'antd';
-import { Modal, Button } from 'antd';
-
+import { Modal, Button,Input  } from 'antd';
 import { inject, observer } from 'mobx-react';
 
 interface PropsInfo {
@@ -21,19 +20,19 @@ interface PropsInfo {
 const columns = [
     {
         title: '类型ID',
-        dataIndex: 'typeid',
+        dataIndex: 'questions_type_id',
     },
     {
         title: '类型名称',
-        dataIndex: 'tname',
+        dataIndex: 'questions_type_text',
     },
     {
         title: '操作',
         dataIndex: 'zuo',
-    },
+    }
 ];
 
-const arr:any=[];
+
 
 @inject('examall')
 @observer
@@ -44,41 +43,20 @@ class Testlist extends React.Component<PropsInfo> {
         visible: false,
         list:[],
         tyname:''
-        
-
     }
+
     showModal = () => {
         this.setState({
             visible: true,
         });
     };
 
-    // handleOk = () => {
-    //     this.setState({ loading: true });
-    //     setTimeout(() => {
-    //         this.setState({ loading: false, visible: false });
-    //     }, 3000);
-    // };
-
     handleCancel = () => {
         this.setState({ visible: false });
     };
 
     public render() {
-       
-        const {loading,visible,list,tyname} = this.state;
-
-        {
-            list.map((item:any,index:any)=>{
-                return arr.push({
-                    typeid:item.questions_type_id,
-                    tname:item.questions_type_text,
-                    zuo:'',
-                    id:item.id
-                })
-            })
-        }
-
+        const {visible,list,tyname} = this.state;
         return (
             <div className="wrapper">
             <h1>试题分类</h1>
@@ -91,7 +69,6 @@ class Testlist extends React.Component<PropsInfo> {
                         <Modal
                             visible={visible}
                             title="创建新类型"
-                           
                             onCancel={this.handleCancel}
                             footer={[
                                 <Button key="back" onClick={this.handleCancel}>
@@ -103,12 +80,13 @@ class Testlist extends React.Component<PropsInfo> {
                             ]}
                         >
                             <p>
-                                <input type="text" placeholder="请输入试题类型" onChange={this.handletype} value={tyname} name="tyname"/>
+                                {/* <input type="text" placeholder="请输入试题类型" onChange={this.handletype} value={tyname} name="tyname"/> */}
+                                <Input size="large" placeholder="请输入试题类型" onChange={this.handletype} value={tyname} name="tyname"/>
                             </p>
                         </Modal>
                     </div>
                     <div className="handletaber">
-                            <Table columns={columns} dataSource={arr} size="middle" 
+                            <Table columns={columns} dataSource={list} size="middle" 
                             rowKey={(record:any)=>{
                                 return record.id
                             }}
@@ -134,21 +112,16 @@ class Testlist extends React.Component<PropsInfo> {
 
     handleok = () =>{
         let {tyname}  = this.state;
-        console.log(tyname);
-        let obj={
-            typeid:tyname,
-            zuo:'',
-            
-        }
-        arr.push(obj);
-        this.typeadd(obj);
+        console.log(JSON.stringify(tyname));
+        this.typeadd(JSON.stringify(tyname));
         this.setState({ visible: false });
     }
 
-    typeadd =async(obj:any)=>{
+    typeadd =async(obj:string)=>{
+        console.log(obj)
         const {typeadd} = this.props.examall;
         console.log(typeadd);
-        const result = await typeadd(obj);
+        const result = await typeadd({text:obj,sort:'1'});
         console.log(result);
     }
 
@@ -157,7 +130,8 @@ class Testlist extends React.Component<PropsInfo> {
         const result = await examall();
         console.log(result)
         result.map((item:any,index:any)=>{
-            item.id=index+''
+            item.id=index+'',
+            item.zuo=''
         })
         this.setState({
             list:result
