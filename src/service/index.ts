@@ -14,3 +14,7 @@ export * from './question';
 export * from './examtype/index';
 export * from './classmange/class/roomall';
 export * from './classmange/class/xueall';
+export * from './classmange/room/delroom';
+export * from './classmange/student/studentall';
+export * from './exambuild/getexam';
+

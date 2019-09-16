@@ -141,10 +141,12 @@ interface UserFormProps extends FormComponentProps {
   age: number;
   history: any;
   name: string;
+  question:any
 }
 
 @inject("usershow")
 @observer
+
 class Showuser extends React.Component<UserFormProps, any> {
     state = {
         data: [],
@@ -153,19 +155,19 @@ class Showuser extends React.Component<UserFormProps, any> {
     }
 
     public async userInfo($url: string, $tit: string, $index: number) {
-
         const result = await this.props.usershow.userShow($url);
         result.data.map((item: any, index: number) => {
-            item.id = index
+            item.id = index+''
         })
         console.log(result.data)
-        this.setState({ data: result.data, title: $tit, columns: mycolumns[$index] })
-
-    }
+        this.setState({ data: result.data, title: $tit, columns: mycolumns[$index]})
+       }
 
     public async componentDidMount() {
-        this.userInfo("/user/user", "用户数据", 0)
+        this.userInfo("/user/user", "用户数据", 0);
+        
     }
+
     public render() {
         let { data, title, columns } = this.state;
         return (
@@ -191,6 +193,8 @@ class Showuser extends React.Component<UserFormProps, any> {
             </Content>
         )
     }
+
+  
 }
 
 export default Form.create()(Showuser);
