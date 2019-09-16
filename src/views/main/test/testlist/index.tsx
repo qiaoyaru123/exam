@@ -92,7 +92,7 @@ class Testlist extends React.Component<PropsInfo> {
                              </Button>,
                                 <Button key="back" onClick={this.handleok}>
                                     提交
-                         </Button>,
+                          </Button>,
                             ]}
                         >
                             <p>

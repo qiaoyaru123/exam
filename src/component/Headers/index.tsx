@@ -34,7 +34,6 @@ class Headers extends React.Component<PropsInfo, any> {
 
   public async componentDidMount() {
     const userInfo = await this.props.user.userInfo();
-    console.log(userInfo);
     const userpwd = window.localStorage.getItem("account");
     if (userpwd) {
       let pwd = JSON.parse(userpwd);
@@ -132,7 +131,7 @@ class Headers extends React.Component<PropsInfo, any> {
           />
         </span>
 
-        <span className="m-header-slice">
+        <span className="m-header-long">
           请选择语言:
           <Select
             style={{ width:100 }}
@@ -140,14 +139,25 @@ class Headers extends React.Component<PropsInfo, any> {
             onChange={this.onChange}
           >
             <Option value="CN">中文</Option>
-            <Option value="US">Lucy</Option>
+            <Option value="US">English</Option>
           </Select>
         </span>
-
-        {/*  <button onClick={() => {
-        let ele:any = document.querySelector('#root');
-        ele.className = theme[(theme.findIndex(item=>item===ele.className)+1)%3];
-      }}>切换主题</button> */}
+         <span className="m-header-theme">
+           请选择主题
+           <Select
+            style={{ width:100 }}
+            placeholder="淡浅灰(默认)"
+            onChange={(value:any)=>{
+              let ele:any = document.querySelector('#root');
+              ele.className = value?value:"line";
+            }}
+          >
+            <Option value="line">淡浅灰(默认)</Option>
+            <Option value="red">中国红</Option>
+            <Option value="blue">天空蓝</Option>
+            <Option value="green">草原绿</Option>
+          </Select>
+         </span>
         <Dropdown overlay={menus}>
           <div className="m-header-user">
             <img src={info.avatar} alt="用户头像" />
