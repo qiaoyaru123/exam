@@ -107,46 +107,6 @@ let Detailpage = Loadable({
   loader: () => import("../views/main/test/detailpage/index")
 });
 
-// export default [
-//   {
-//     path:"/login",
-//     component: Login,
-//   },
-//   { 
-//       path:"/main",
-//       component:Main,
-//       children:[{
-//           path:"/main/text",
-//           component:Test,
-//           children:[
-//             {
-//             path: "/main/test/addQuestion",
-//             component: AddQuestion,
-//           },
-//           {
-//             path: "/main/test/testlist",
-//             component: Testlist,   
-//           },{
-//             path: "/main/test/checkQuestion",
-//             component: CheckQuestion,     
-//           },{
-//             path: "/main/test/Messagepage",
-//             component: Messagepage,
-//           },
-//             {
-//             path:"/main/test",
-//             redirect: "/main/test/checkQuestion"
-//           }]
-//       }],
-     
-//   },
-//   {
-//     path:"/",
-//     redirect: "/login"
-//   },
-  
-// ];
-
 export default [
     {
         component: Login,

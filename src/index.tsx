@@ -4,7 +4,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import routes from './router/routes';
 import RouterView from './router/RouterView';
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 
 // 引入mobx
 import { Provider } from 'mobx-react';
@@ -17,9 +17,9 @@ import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <Provider {...store}>
-      <BrowserRouter>
+      <HashRouter>
           <RouterView routes={routes}></RouterView>
-      </BrowserRouter>
+      </HashRouter>
   </Provider>,
   document.getElementById('root') as HTMLElement
 );

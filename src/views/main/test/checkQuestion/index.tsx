@@ -129,17 +129,7 @@ class Checkfile extends React.Component<UserFormProps, any> {
     this.setState({ datas: result.data });
   };
 
-  channel=(e:any)=>{
-   console.log(123)
-  }
-  derive=()=>{
-   console.log(456)
-  }
-
-  
-
   public render() {
-    
     let { datas, title, ind } = this.state;
     return (
       <Content style={{ margin: "0 16px" }}>
@@ -179,11 +169,11 @@ class Checkfile extends React.Component<UserFormProps, any> {
               ))}
             </div>
             <div className="m-input-search">
-              <span className="m-search-item">
+              <span>
                 考试类型:
                 <Week />
               </span>
-              <span className="m-search-item">
+              <span>
                 题目类型:
                 <Type />
               </span>
@@ -191,16 +181,6 @@ class Checkfile extends React.Component<UserFormProps, any> {
                 <Button onClick={this.queryData}>
                   <Icon type="search" />
                   查询
-                </Button>
-              </span>
-              <span>
-                <Button onClick={this.channel}>
-                  导出
-                </Button>
-              </span>
-              <span>
-                <Button onClick={this.derive}>
-                  导入
                 </Button>
               </span>
             </div>

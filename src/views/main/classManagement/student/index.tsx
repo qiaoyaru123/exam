@@ -1,8 +1,9 @@
-import { Button, Form, Input, Layout, Select, Breadcrumb, Table } from 'antd'
+import { Button, Form, Input, Layout, Select, Breadcrumb, Table ,Upload} from 'antd'
 import { FormComponentProps } from 'antd/lib/form';
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 import "./index.css";
+import * as XLSX from "xlsx"
 
 const { Option } = Select;
 const { Content } = Layout;
@@ -95,10 +96,70 @@ class Student extends React.Component<UserFormProps, any> {
   handlesearch=()=>{
     let {list,val} = this.state;
     let arr=list.filter((item:any)=>item.student_name.includes(val))
-    console.log(arr);
     this.setState({
       list:arr
     })
+
+   /* // 前端模糊搜索
+    list.filter((item:any)=>{
+      let flag=true;
+      if(status_name){
+        flag=flag&&status_name===item.student_name
+      }
+      if(grade_id){
+       flag=flag&&grade_id===item.grade_id
+      }
+      if(room_id){
+        flag=flag&&room_id===item.room_id
+       }
+       return flag
+    })*/
+  
+  }
+
+//导出文件
+  channelExcel=()=>{
+    //1.把table里面的数据转换成weeksheet
+    let weeksheet=XLSX.utils.json_to_sheet(this.state.list);
+
+    //2.把workshell放到workbook里
+    let wookbook=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wookbook,weeksheet)
+    // 可导出多条
+    // XLSX.utils.book_append_sheet(wookbook,weeksheet)
+    // XLSX.utils.book_append_sheet(wookbook,weeksheet)
+    // XLSX.utils.book_append_sheet(wookbook,weeksheet)
+    
+    XLSX.writeFile(wookbook,"学生名单.xlsx")
+   }
+
+   //导入文件
+   deriveExcel=(file:any)=>{
+     let reader=new FileReader();
+     console.log(file)
+     reader.onload=(e:any)=>{
+        let  data=new Uint8Array(e.target.result);
+        let  wookbook=XLSX.read(data,{type:"array"})
+        // console.log(wookbook.Sheets.Sheet1)
+        let datas=XLSX.utils.sheet_to_json(wookbook.Sheets.Sheet1);
+        // console.log(datas)
+     }
+    reader.readAsArrayBuffer(file)
+     return false
+   }
+
+   deriveExce=(file:any)=>{
+    let reader=new FileReader();
+   
+  console.log(file.target.files[0])
+   //  reader.onload=function(e:any){
+   //     let  data=new Uint8Array(file);
+   //     let  wookbook=XLSX.read(data,{type:"array"})
+   //     console.log(wookbook)
+   //     return wookbook
+   //  }
+   //  reader.readAsArrayBuffer(file)
+    return false
   }
 
   public render() {
@@ -129,6 +190,17 @@ class Student extends React.Component<UserFormProps, any> {
             </Select>
             <Button onClick={this.handlesearch}>搜索</Button>
             <Button>重置</Button>
+            <Button onClick={this.channelExcel}>
+                  导出
+               </Button>
+              <Upload
+                beforeUpload={this.deriveExcel}
+              >
+                <Button>导入</Button>
+              </Upload>
+              <Button>
+                <input type="file" onChange={this.deriveExce}/>
+              </Button>
           </div>
           <div className="m-item-stud">
             <Table
@@ -158,7 +230,6 @@ class Student extends React.Component<UserFormProps, any> {
   getroomall = async()=>{
     const {roomall} = this.props.roomall;
     const result =await roomall();
-    console.log(result.data);
     this.setState({
       roomall:result.data
     })
@@ -167,7 +238,6 @@ class Student extends React.Component<UserFormProps, any> {
   getclassall = async() =>{
     const {classall} = this.props.studentall;
     const result = await classall();
-    
     this.setState({
       classall:result.data
     })
