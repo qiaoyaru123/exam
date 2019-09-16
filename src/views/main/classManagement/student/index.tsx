@@ -73,7 +73,8 @@ class Student extends React.Component<UserFormProps, any> {
     loading: false,
     list:[],
     roomall:[],
-    classall:[]
+    classall:[],
+    val:''
   }
 
   handleChanges(value: any) {
@@ -85,9 +86,23 @@ class Student extends React.Component<UserFormProps, any> {
   handleTableChange = (pagination:any, filters:any, sorter:any) => {
         console.log(pagination, filters,sorter)
   };
+  handlesou=async(e:any)=>{
+    this.setState({
+      val:e.target.value
+    })
+  }
+
+  handlesearch=()=>{
+    let {list,val} = this.state;
+    let arr=list.filter((item:any)=>item.student_name.includes(val))
+    console.log(arr);
+    this.setState({
+      list:arr
+    })
+  }
 
   public render() {
-    let {value,roomall,classall  } = this.state;
+    let {value,roomall,classall ,val } = this.state;
     return (
       <Content style={{ margin: '0 16px' }}>
         <Breadcrumb style={{ margin: '16px 0', fontSize: 20 }}>
@@ -95,7 +110,7 @@ class Student extends React.Component<UserFormProps, any> {
         </Breadcrumb>
         <div style={{ padding: 24, background: '#fff', minHeight: 530 }}>
           <div className="m-header-student">
-            <Input placeholder="输入学生姓名..." />
+            <Input placeholder="输入学生姓名..." value={val} onChange={this.handlesou}/>
             <Select defaultValue="" 
             style={{ width: 200, marginLeft: 30 }} 
             onChange={() => { this.handleChanges(value) }}>
@@ -112,7 +127,7 @@ class Student extends React.Component<UserFormProps, any> {
                   })
                 }
             </Select>
-            <Button>搜索</Button>
+            <Button onClick={this.handlesearch}>搜索</Button>
             <Button>重置</Button>
           </div>
           <div className="m-item-stud">

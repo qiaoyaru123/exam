@@ -18,8 +18,6 @@ interface UserFormProps extends FormComponentProps {
   state: any;
 }
 
-
-const { Option } = Select;
 const { Content } = Layout;
 
 @inject("question")
@@ -33,7 +31,7 @@ class Checkfile extends React.Component<UserFormProps, any> {
     id: ""
   };
 
-  public async componentDidMount() {
+  async componentDidMount() {
     const title = await this.props.question.examsubject();
     this.getData({ params: {} });
     this.setState({ title: title.data });
@@ -118,7 +116,7 @@ class Checkfile extends React.Component<UserFormProps, any> {
 
   //详情页
   detailPage=($id:any)=>{
-      console.log($id)
+      this.props.history.push({pathname:"/main/test/Detailpage",state:{item:$id}})
   }
 
   //编辑页
@@ -130,6 +128,15 @@ class Checkfile extends React.Component<UserFormProps, any> {
     const result = await this.props.question.question(params);
     this.setState({ datas: result.data });
   };
+
+  channel=(e:any)=>{
+   console.log(123)
+  }
+  derive=()=>{
+   console.log(456)
+  }
+
+  
 
   public render() {
     
@@ -172,11 +179,11 @@ class Checkfile extends React.Component<UserFormProps, any> {
               ))}
             </div>
             <div className="m-input-search">
-              <span>
+              <span className="m-search-item">
                 考试类型:
                 <Week />
               </span>
-              <span>
+              <span className="m-search-item">
                 题目类型:
                 <Type />
               </span>
@@ -186,13 +193,23 @@ class Checkfile extends React.Component<UserFormProps, any> {
                   查询
                 </Button>
               </span>
+              <span>
+                <Button onClick={this.channel}>
+                  导出
+                </Button>
+              </span>
+              <span>
+                <Button onClick={this.derive}>
+                  导入
+                </Button>
+              </span>
             </div>
             <List
               itemLayout="horizontal"
               dataSource={datas}
               renderItem={(item: any) => (
                 <List.Item>
-                  <div className="m-item" onClick={()=>{this.detailPage(item.exam_id)}}>
+                  <div className="m-item" onClick={()=>{this.detailPage(item.questions_id)}}>
                     <span>{item.title}</span>
                     <span>
                       <Button>{item.questions_type_text}</Button>
