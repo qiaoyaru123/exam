@@ -42,8 +42,11 @@
  .m-input-search {
   display: flex;
 } 
-.m-input-search .m-search-week {
- margin-right: 10px;
+.m-input-search .m-search-item{
+ flex: 2
+}
+.m-input-search span{
+  flex: 1
 }
 
 .m-item {

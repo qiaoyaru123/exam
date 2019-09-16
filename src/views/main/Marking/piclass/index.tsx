@@ -50,11 +50,6 @@ const data = [
     },
 ];
 
-<<<<<<< HEAD
-const arr=[];
-
-=======
->>>>>>> 97ee93aa31c353394545a6d2a9e8c9d41c325ca1
 interface Props{
     examlist:any,
     allstu:any,

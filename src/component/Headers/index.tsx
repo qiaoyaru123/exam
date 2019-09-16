@@ -88,7 +88,11 @@ class Headers extends React.Component<PropsInfo, any> {
     if (e.target.name === "name") {
       this.setState({ username: e.target.value });
     } else if (e.target.name === "pwd") {
-      this.setState({ password: e.target.value });
+      if(/^(?![a-z]+$)(?![A-Z]+$)(?!([^(a-zA-Z\!\*\.\#)])+$)^.{8,16}$/.test(e.target.value)){
+        this.setState({ password: e.target.value });
+      }else{
+         message.info("密码格式不正确")
+      }
     }
   };
 
@@ -143,7 +147,7 @@ class Headers extends React.Component<PropsInfo, any> {
           </Select>
         </span>
          <span className="m-header-theme">
-           请选择主题
+           请选择主题:
            <Select
             style={{ width:100 }}
             placeholder="淡浅灰(默认)"

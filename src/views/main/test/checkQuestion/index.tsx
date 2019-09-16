@@ -179,11 +179,11 @@ class Checkfile extends React.Component<UserFormProps, any> {
               ))}
             </div>
             <div className="m-input-search">
-              <span className="m-search-week">
+              <span className="m-search-item">
                 考试类型:
                 <Week />
               </span>
-              <span className="m-search-type">
+              <span className="m-search-item">
                 题目类型:
                 <Type />
               </span>
