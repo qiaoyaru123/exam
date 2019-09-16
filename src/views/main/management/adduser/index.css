@@ -20,7 +20,7 @@ h3{
 .nav .box{
     width: 400px;
     height: 300px;
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     
 }
 .tou{
@@ -54,6 +54,29 @@ h3{
     height: 40px;
     margin-top: 10px;
     margin-left: 15px;
+}
+.icons{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.cons{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;  
+}
+.cons input{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.cons .select{
+    margin-left: 10px;
+}
+.cons .btns{
+    margin-top: 20px;
+    margin-left: 10px;
 }
  #sel{
     margin-top: 10px ;

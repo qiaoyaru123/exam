@@ -153,7 +153,7 @@ class Headers extends React.Component<PropsInfo, any> {
             placeholder="淡浅灰(默认)"
             onChange={(value:any)=>{
               let ele:any = document.querySelector('#root');
-              ele.className = value?value:"line";
+              ele.className = value;
             }}
           >
             <Option value="line">淡浅灰(默认)</Option>

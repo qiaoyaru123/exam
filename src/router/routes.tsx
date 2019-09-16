@@ -107,6 +107,11 @@ let Detailpage = Loadable({
   loader: () => import("../views/main/test/detailpage/index")
 });
 
+let Pixiang = Loadable({
+  loading:Loading,
+  loader :() => import('../views/main/Marking/pixiang/index')
+})
+
 export default [
     {
         component: Login,
@@ -210,6 +215,10 @@ export default [
                     {
                         path: "/main/Marking/piclass",
                         component: Piclass
+                    },
+                    {
+                      path:'/main/Marking/pixiang/:id',
+                      component:Pixiang
                     },
                     {
                         path: "/main/Marking",

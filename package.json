@@ -5,7 +5,11 @@
   "dependencies": {
     "@types/js-cookie": "^2.2.2",
     "@types/react-router-dom": "^4.3.5",
+<<<<<<< HEAD
     "antd": "^3.23.1",
+=======
+    "antd": "^3.23.2",
+>>>>>>> f4f8897a2648dcfc3336f0f35b569a6181c41336
     "autoprefixer": "7.1.6",
     "axios": "^0.19.0",
     "babel-jest": "20.0.3",
@@ -71,10 +75,24 @@
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "@types/react-loadable": "^5.5.1",
+<<<<<<< HEAD
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "typescript": "^3.6.2"
   },
+=======
+    "babel-plugin-import": "^1.12.1",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.6.2"
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+>>>>>>> f4f8897a2648dcfc3336f0f35b569a6181c41336
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
@@ -116,6 +134,7 @@
     ],
     "globals": {
       "ts-jest": {
+<<<<<<< HEAD
         "tsConfigFile": "F:\\exam1\\exam\\tsconfig.test.json"
       }
     }
@@ -124,5 +143,10 @@
     "presets": [
       "react-app"
     ]
+=======
+        "tsConfigFile": "C:\\Users\\admin\\Desktop\\实训一技能\\分支\\ru-9.16\\exam\\tsconfig.test.json"
+      }
+    }
+>>>>>>> f4f8897a2648dcfc3336f0f35b569a6181c41336
   }
 }

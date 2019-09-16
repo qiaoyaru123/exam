@@ -86,7 +86,7 @@ class Main extends React.Component<PropsInfo, any> {
           </Sider>
           <Content
             className="content"
-            style={{ padding: "0 24px", background: "#f0f2f5"}}
+            style={{ padding: "0 24px"}}
           >
             <RouterView routes={this.props.children}></RouterView>
           </Content>

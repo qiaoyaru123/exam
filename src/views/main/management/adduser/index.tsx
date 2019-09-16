@@ -3,30 +3,50 @@ import "./index.css";
 
 import { inject, observer } from "mobx-react";
 import { FormComponentProps } from "antd/lib/form";
+import { Select, Input, Button } from 'antd';
 
-// interface Props {
-//   props: any;
-//   adduser: any;
-// }
+const { Option } = Select;
+
+function onChange(value: any) {
+  console.log(`selected ${value}`);
+}
+
+function onBlur() {
+  console.log('blur');
+}
+
+function onFocus() {
+  console.log('focus');
+}
+
+function onSearch(val: any) {
+  console.log('search:', val);
+}
+
 interface Propsinfo extends FormComponentProps {
-    props: any;
-    adduser: any;
-    form:any;
-  }
+  props: any;
+  adduser: any;
+  form: any;
+  display: any;
+}
 
 @inject("adduser")
 @observer
 
-class Management extends React.Component<Propsinfo,any>{
+class Management extends React.Component<Propsinfo, any>{
+  state: {
+    flag:true
+  }
   public render() {
+    let {flag} = this.state;
     return (
       <div className="wrap">
         <h3>添加用户</h3>
         <div className="nav">
           <div className="box">
             <div className="tou">
-              <span>添加用户</span>
-              <span>更新用户</span>
+              <span onClick={this.handleadd}>添加用户</span>
+              <span onClick={this.handlegeng}>更新用户</span>
             </div>
             <div className="con">
               <input />
@@ -41,6 +61,36 @@ class Management extends React.Component<Propsinfo,any>{
                 <button>重置</button>
               </div>
             </div>
+
+            <div className="cons" >
+              <Select
+                // showSearch
+                style={{ width: 200, height: 30 }}
+                placeholder=" "
+                optionFilterProp="children"
+                //onChange={onChange}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                onSearch={onSearch}
+                // filterOption={(input, option) =>
+                //     option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                // }
+                className="select"
+              >
+                <Option value="jack">Jack</Option>
+                <Option value="lucy">Lucy</Option>
+                <Option value="tom">Tom</Option>
+              </Select>
+
+              <Input size="large" placeholder="" style={{ width: 360, height: 30 }} />
+              <Input size="large" placeholder="" style={{ width: 360, height: 30 }} />
+
+              <div className="btns">
+                <Button>确定</Button>
+                <Button>重置</Button>
+              </div>
+            </div>
+
           </div>
 
           <div className="box">
@@ -139,17 +189,26 @@ class Management extends React.Component<Propsinfo,any>{
     );
   }
 
- public componentDidMount() {
-    // this.getData();
+  public componentDidMount() {
+    this.getData();
   }
 
-//   getData = async () => {
-//     const result = await this.props.adduser.adduser();
-//     console.log(result);
-//     this.setState({
-//       list: result
-//     });
-//   };
+
+  handleadd = () => {
+
+  }
+
+  handlegeng = () => {
+
+  }
+
+    getData = async () => {
+      const result = await this.props.adduser.adduser();
+      console.log(result);
+      this.setState({
+        list: result
+      });
+    };
 }
 
 export default Management;

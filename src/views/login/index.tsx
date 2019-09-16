@@ -18,22 +18,38 @@ interface Propsinfo {
   form: any;
   user: any;
   props: any;
+  history: any;
+  list:any
 }
 
-interface Propsinfo extends FormComponentProps {
-  history: any;
-}
+// interface Propsinfo extends FormComponentProps {
+//   history: any;
+//   list:any
+// }
 
 @inject("user")
 @observer
 class Login extends React.Component<Propsinfo> {
   props: any;
-  constructor(props: any) {
-    super(props);
+  // constructor(props: any) {
+  //   super(props) 
+  // }
+  state={
+    list:[]
   }
 
+ 
   public componentDidMount() {
     this.props.form.validateFields();
+    
+    // setInterval(()=>{
+    //   let list:number[] = this.state.list;
+    //   list.push(list.length+1);
+    //   this.setState({
+    //     list
+    //   })
+    // },100)
+    
   }
 
   public handleSubmit = (e: { preventDefault: () => void }) => {
@@ -62,6 +78,7 @@ class Login extends React.Component<Propsinfo> {
   public render() {
     const { getFieldDecorator } = this.props.form;
     const { user_name, user_pwd } = this.props.user.account;
+    let {list} = this.state;
     return (
       <div className="allju">
         <Form onSubmit={this.handleSubmit} className="login-form">
@@ -120,6 +137,9 @@ class Login extends React.Component<Propsinfo> {
       </div>
     );
   }
+
+
+  
 }
 
 export default Form.create()(Login);

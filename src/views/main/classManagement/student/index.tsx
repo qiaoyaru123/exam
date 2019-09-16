@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import { Button, Form, Input, Layout, Select, Breadcrumb, Table ,Upload} from 'antd'
+=======
+import { Button, Form, Input, Layout, Select, Breadcrumb, Table } from 'antd'
+>>>>>>> f4f8897a2648dcfc3336f0f35b569a6181c41336
 import { FormComponentProps } from 'antd/lib/form';
 import * as React from 'react';
 import { inject, observer } from 'mobx-react';
 import "./index.css";
+<<<<<<< HEAD
 import * as XLSX from "xlsx"
+=======
+>>>>>>> f4f8897a2648dcfc3336f0f35b569a6181c41336
 
 const { Option } = Select;
 const { Content } = Layout;
@@ -24,6 +31,7 @@ const columns = [
   {
     title: '姓名',
     dataIndex: 'student_name',
+<<<<<<< HEAD
     width: '20%',
   },
   {
@@ -46,6 +54,30 @@ const columns = [
     width: '20%',
   },
   {
+=======
+    width: '20%',
+  },
+  {
+    title: '学号',
+    dataIndex: 'student_id',
+    width: '20%',
+  },{
+    title: '班级',
+    dataIndex: '',
+    width: '20%',
+  },
+  {
+    title: '教室',
+    dataIndex: '',
+    width: '20%',
+  },
+  {
+    title: '密码',
+    dataIndex: 'student_pwd',
+    width: '20%',
+  },
+  {
+>>>>>>> f4f8897a2648dcfc3336f0f35b569a6181c41336
     title: '操作',
     dataIndex: 'done',
     width: '20%',
@@ -96,6 +128,7 @@ class Student extends React.Component<UserFormProps, any> {
   handlesearch=()=>{
     let {list,val} = this.state;
     let arr=list.filter((item:any)=>item.student_name.includes(val))
+<<<<<<< HEAD
     this.setState({
       list:arr
     })
@@ -160,6 +193,12 @@ class Student extends React.Component<UserFormProps, any> {
    //  }
    //  reader.readAsArrayBuffer(file)
     return false
+=======
+    console.log(arr);
+    this.setState({
+      list:arr
+    })
+>>>>>>> f4f8897a2648dcfc3336f0f35b569a6181c41336
   }
 
   public render() {
@@ -230,6 +269,10 @@ class Student extends React.Component<UserFormProps, any> {
   getroomall = async()=>{
     const {roomall} = this.props.roomall;
     const result =await roomall();
+<<<<<<< HEAD
+=======
+    console.log(result.data);
+>>>>>>> f4f8897a2648dcfc3336f0f35b569a6181c41336
     this.setState({
       roomall:result.data
     })
@@ -238,6 +281,10 @@ class Student extends React.Component<UserFormProps, any> {
   getclassall = async() =>{
     const {classall} = this.props.studentall;
     const result = await classall();
+<<<<<<< HEAD
+=======
+    
+>>>>>>> f4f8897a2648dcfc3336f0f35b569a6181c41336
     this.setState({
       classall:result.data
     })
