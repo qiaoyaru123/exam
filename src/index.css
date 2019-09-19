@@ -1,26 +1,5 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    list-style: none
+
+html, body, :global(#root) {
+  height: 100%;
 }
 
-html,
-body,
-#root {
-    width: 100%;
-    height: 100%;
-}
-.red .content {
-    background: red
-}
-.blue .content {
-    background: blueviolet
-}
-.green .content {
-    background: yellowgreen
-} 
-
-.cls .content{
-    background: #f0f2f5
-}
